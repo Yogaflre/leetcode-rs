@@ -7,3 +7,4 @@ mod merge_two_sorted_lists;
 mod maximum_subarray;
 mod climbing_stairs;
 mod reverse_linked_list;
+mod symmetric_tree;

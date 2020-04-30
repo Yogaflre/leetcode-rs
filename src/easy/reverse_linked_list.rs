@@ -20,14 +20,13 @@ impl Solution {
     }
 
     fn reverse_list_loop(mut head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        let mut tmp = head;
         let mut new_head: Option<Box<ListNode>> = None;
-        while let Some(mut node) = tmp.take() {
-            let next = node.next;
+        while let Some(mut node) = head.take() {
+            let next: Option<Box<ListNode>> = node.next.take();
             node.next = new_head.take();
 
             new_head = Some(node);
-            tmp = next;
+            head = next;
         }
         return new_head;
     }

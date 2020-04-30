@@ -12,7 +12,7 @@
 // Could you do this in one pass?
 
 //解题思路
-//方法一：
+//方法一(Unsafe)：哨兵节点+双指针
 //  使用双指针，先由头指针走N个结点，再同时走到链表结束。此时第二个指针的位置则是需要被删除的结点
 //方法二：重新构造链表（Safe）
 
@@ -22,34 +22,23 @@ struct Solution;
 impl Solution {
     pub fn remove_nth_from_end(head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNode>> {
         unsafe {
-            let mut head = head;
-            let mut first: *mut Option<Box<ListNode>> = &mut head;
-            let mut second: *mut Option<Box<ListNode>> = &mut head;
-
+            let mut tmp_head = Some(Box::new(ListNode::new(0)));
+            tmp_head.as_mut().unwrap().next = head;
+            let mut a: *const Option<Box<ListNode>> = &tmp_head;
+            let mut b: *mut Option<Box<ListNode>> = &mut tmp_head;
             for _ in 0..n {
-                first = &mut (*first).as_mut().unwrap().next;
+                a = &(*a).as_ref().unwrap().next;
             }
-
-            if (*first).is_none() {
-                return head.unwrap().next;
-            }
-
             loop {
-                first = &mut (*first).as_mut().unwrap().next;
-                if (*first).is_none() {
+                a = &(*a).as_ref().unwrap().next;
+                if (*a).is_some() {
+                    b = &mut (*b).as_mut().unwrap().next;
+                } else {
                     break;
                 }
-                second = &mut (*second).as_mut().unwrap().next;
             }
-            (*second).as_mut().unwrap().next = (*second)
-                .as_mut()
-                .unwrap()
-                .next
-                .as_mut()
-                .unwrap()
-                .next
-                .take();
-            head
+            (*b).as_mut().unwrap().next = (*b).as_mut().unwrap().next.as_mut().unwrap().next.take();
+            return tmp_head.unwrap().next;
         }
     }
 }
@@ -58,6 +47,9 @@ impl Solution {
 fn run() {
     let head = ListNode::create(vec![1, 2, 3, 4, 5]);
     let result = ListNode::create(vec![1, 2, 3, 5]);
-
     assert_eq!(Solution::remove_nth_from_end(head, 2), result);
+
+    let head = ListNode::create(vec![1]);
+    let result = ListNode::create(vec![]);
+    assert_eq!(Solution::remove_nth_from_end(head, 1), result);
 }

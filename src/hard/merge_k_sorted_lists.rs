@@ -11,8 +11,8 @@
 // Output: 1->1->2->3->4->4->5->6
 
 // 解题思路
-// 方法一：
-//  
+// 方法一：遍历
+//  每次取所有链表最小的节点插入，再删除原链表中的该节点，直到vec为空
 // 方法二：(非常耗时)
 //  将合并多个链表分解为多次合并双链表
 
@@ -23,7 +23,6 @@ impl Solution {
     pub fn merge_k_lists(lists: Vec<Option<Box<ListNode>>>) -> Option<Box<ListNode>> {
         None
     }
-
 
     pub fn merge_k_lists2(lists: Vec<Option<Box<ListNode>>>) -> Option<Box<ListNode>> {
         let mut result: Option<Box<ListNode>> = None;
@@ -83,6 +82,14 @@ impl Solution {
 
 #[test]
 fn run() {
+    assert_eq!(
+        Solution::merge_k_lists(vec![ListNode::create(vec![2]), ListNode::create(vec![-1])]),
+        ListNode::create(vec![-1, 2])
+    );
+    assert_eq!(
+        Solution::merge_k_lists(vec![ListNode::create(vec![])]),
+        ListNode::create(vec![])
+    );
     assert_eq!(
         Solution::merge_k_lists(vec![
             ListNode::create(vec![1, 4, 5]),
