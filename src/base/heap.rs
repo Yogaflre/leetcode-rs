@@ -7,7 +7,7 @@ struct Heap {
 
 impl Heap {
     // 对指定节点进行堆化
-    fn heap(nums: &mut Vec<i32>, mut index: usize) {
+    fn heapify(nums: &mut Vec<i32>, mut index: usize) {
         while index < nums.len() {
             let mut next = index;
             // 如果左孩子比根节点大，则将next设置为左孩子
@@ -37,7 +37,7 @@ impl Heap {
         if nums.len() > 1 {
             // NOTE 这里选取起始点(n/2)很重要！根据完全二叉树特性选取第一个非叶子节点
             for i in (0..=((nums.len() / 2) - 1)).rev() {
-                Heap::heap(&mut nums, i);
+                Heap::heapify(&mut nums, i);
             }
         }
         return Heap {
@@ -69,7 +69,7 @@ impl Heap {
                 self.nodes.remove(0);
             } else {
                 self.nodes[0] = self.nodes.pop().unwrap();
-                Heap::heap(&mut self.nodes, 0);
+                Heap::heapify(&mut self.nodes, 0);
             }
         }
     }

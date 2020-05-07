@@ -28,5 +28,8 @@ mod lru_cache;
 mod binary_tree_inorder_traversal;
 mod binary_tree_preorder_traversal;
 mod binary_tree_level_order_traversal;
+mod construct_binary_tree_from_preorder_and_inorder_traversal;
 mod unique_binary_search_trees;
 mod remove_linked_list_elements;
+mod word_search;
+mod sort_list;

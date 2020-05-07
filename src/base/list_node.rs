@@ -19,7 +19,7 @@ impl ListNode {
         for i in 0..nums.len() {
             temp.as_mut().unwrap().next = Some(Box::new(ListNode::new(nums[i])));
             if i < nums.len() {
-                temp = &mut (*temp).as_mut().unwrap().next;
+                temp = &mut temp.as_mut().unwrap().next;
             }
         }
         result.unwrap().next

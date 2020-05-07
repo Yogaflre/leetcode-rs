@@ -8,3 +8,7 @@ mod maximum_subarray;
 mod climbing_stairs;
 mod reverse_linked_list;
 mod symmetric_tree;
+mod maximum_depth_of_binary_tree;
+mod single_number;
+mod find_all_numbers_disappeared_in_an_array;
+mod linked_list_cycle;

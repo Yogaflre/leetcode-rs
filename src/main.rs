@@ -3,4 +3,6 @@ mod easy;
 mod hard;
 mod medium;
 
-fn main() {}
+fn main() {
+    println!("{}", 1 % 3);
+}

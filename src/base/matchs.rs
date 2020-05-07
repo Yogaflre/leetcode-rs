@@ -91,7 +91,7 @@ fn bm(a: &str, b: &str) -> bool {
 // 坏字符规则
 fn bad_char(mains: &Vec<char>, aims: &Vec<char>, i: usize, j: usize) -> usize {
     let mut tmp: usize = j;
-    // TODO 寻找aims中是否存在i位置的字符位置(可以使用散列表优化)
+    // FIXME 寻找aims中是否存在i位置的字符位置(可以使用散列表优化)
     for k in (0..j).rev() {
         if aims[k] == mains[i] {
             tmp = k;
