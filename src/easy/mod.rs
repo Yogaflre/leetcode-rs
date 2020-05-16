@@ -12,3 +12,6 @@ mod maximum_depth_of_binary_tree;
 mod single_number;
 mod find_all_numbers_disappeared_in_an_array;
 mod linked_list_cycle;
+mod best_time_to_buy_and_sell_stock;
+mod min_stack;
+mod majority_element;
