@@ -17,6 +17,8 @@ mod remove_duplicates_from_sorted_list;
 mod reverse_integer;
 mod reverse_linked_list;
 mod single_number;
+mod sqrtx;
 mod symmetric_tree;
 mod two_sum;
 mod valid_parentheses;
+mod search_insert_position;

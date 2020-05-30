@@ -16,7 +16,7 @@
 // Explanation: In this case, no transaction is done, i.e. max profit = 0.
 
 // 解题思路
-// 方法一：
+// 方法一：找到最小元素，并计算差值
 // 方法二：暴力所有情况
 use std::cmp::{max, min};
 struct Solution;
