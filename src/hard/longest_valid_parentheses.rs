@@ -20,8 +20,11 @@
 use std::cmp::max;
 struct Solution;
 impl Solution {
-    // WHY 需要加深理解
+    /**
+     * WHY 不是很理解
+     */
     pub fn longest_valid_parentheses(s: String) -> i32 {
+        // NOTE 必须初始化stack元素为-1
         let mut stack: Vec<i32> = vec![-1];
         let mut sum: i32 = 0;
         for (i, c) in s.chars().enumerate() {

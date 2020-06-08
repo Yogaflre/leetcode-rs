@@ -12,3 +12,4 @@ mod n_queens;
 mod n_queens_ii;
 mod regular_expression_matching;
 mod trapping_rain_water;
+mod lfu_cache;

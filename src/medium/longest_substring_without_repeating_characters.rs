@@ -1,4 +1,5 @@
-// <最长公共子串>
+// <无重复字符的最长子串>
+
 // Given a string, find the length of the longest substring without repeating characters.
 
 // Example 1:
@@ -22,37 +23,57 @@
 //  2.当该字符不在temp中，则添加至temp；如果在temp中，则对temp切片（从重复元素的下一个index到尾部）
 //  3.将该元素添加至temp末尾，并记录temp的最大长度。最终返回该最大长度
 // 优化思路：可以尝试将vec变为list
-use std::cmp;
-
+use std::cmp::max;
+use std::collections::HashMap;
 struct Solution;
 impl Solution {
+    /**
+     * 滑动窗口
+     * 使用HashMap记录每个字符的index，遍历字符数组，每当出现重复字符则修改hashmap中的值
+     */
     pub fn length_of_longest_substring(s: String) -> i32 {
-        let mut temp: Vec<char> = vec![];
-        let mut size: i32 = 0;
-        for i in s.chars() {
-            for index in 0..temp.len() {
-                if i == temp[index] {
-                    temp = temp[index + 1..].to_vec();
-                    break;
-                }
+        let mut len: i32 = 0;
+        let s: Vec<char> = s.chars().collect();
+        let mut map: HashMap<char, usize> = HashMap::new();
+        let mut l = 0;
+        for r in 0..s.len() {
+            if map.contains_key(&s[r]) {
+                l = max(*map.get(&s[r]).unwrap() + 1, l);
+                map.entry(s[r]).and_modify(|v| *v = r);
+            } else {
+                map.insert(s[r], r);
             }
-            temp.push(i);
-            size = cmp::max(size, temp.len() as i32);
+            len = max(len, (r - l + 1) as i32);
         }
-        size
+        return len;
     }
 }
 
 #[test]
 pub fn run() {
-    let input1: String = String::from("abcabcbb");
-    let input2: String = String::from("bbbbb");
-    let input3: String = String::from("pwwkew");
-    let input4: String = String::from(" ");
-    let input5: String = String::from("dvdf");
-    assert_eq!(Solution::length_of_longest_substring(input1), 3);
-    assert_eq!(Solution::length_of_longest_substring(input2), 1);
-    assert_eq!(Solution::length_of_longest_substring(input3), 3);
-    assert_eq!(Solution::length_of_longest_substring(input4), 1);
-    assert_eq!(Solution::length_of_longest_substring(input5), 3);
+    assert_eq!(
+        Solution::length_of_longest_substring(String::from("abba")),
+        2
+    );
+    assert_eq!(
+        Solution::length_of_longest_substring(String::from("abcabcbb")),
+        3
+    );
+    assert_eq!(
+        Solution::length_of_longest_substring(String::from("bbbbb")),
+        1
+    );
+    assert_eq!(
+        Solution::length_of_longest_substring(String::from("pwwkew")),
+        3
+    );
+    assert_eq!(Solution::length_of_longest_substring(String::from("a")), 1);
+    assert_eq!(
+        Solution::length_of_longest_substring(String::from("dvdf")),
+        3
+    );
+    assert_eq!(
+        Solution::length_of_longest_substring(String::from("dvdf")),
+        3
+    );
 }

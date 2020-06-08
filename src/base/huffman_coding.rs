@@ -18,7 +18,7 @@ fn huffman_coding(text: String) -> String {
     sort_count_table.sort_by_key(|x| Reverse(x.1));
     let sort_char: Vec<char> = sort_count_table.iter().map(|x| x.0).collect();
 
-    //FIXME 构建“编码表”
+    //TODO 构建“编码表”
     let mut tmp_code: String = String::from("1");
     for c in sort_char {
         if code_table.is_empty() {
