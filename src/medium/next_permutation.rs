@@ -13,35 +13,58 @@
 // 3,2,1 → 1,2,3
 // 1,1,5 → 1,5,1
 
-// 解题思路：
-// 方法一：
-//  
-
 struct Solution;
 impl Solution {
-    //TODO  It's hard for me.
+    /**
+     * 双指针
+     * 遍历数组，找到左边 < 右边元素的位置(该位置表示转换大小的起点)，将左边的index设置为l
+     * 遍历l+1..nums.len()的元素，寻找大于nums[l]的最小值(确定起始位置)，交换两个元素位置，并且对l之后元素进行排序
+     */
     pub fn next_permutation(nums: &mut Vec<i32>) {
-        
+        let length = nums.len();
+        let mut l = 0;
+        let mut changed = false;
+        for i in (1..length).rev() {
+            if nums[i - 1] < nums[i] {
+                l = i - 1;
+                let mut r = i;
+                for j in i..nums.len() {
+                    if nums[j] > nums[i - 1] && nums[j] < nums[r] {
+                        r = j;
+                    }
+                }
+                changed = true;
+                nums.swap(l, r);
+                break;
+            }
+        }
+        if changed {
+            nums[l + 1..].sort();
+        } else {
+            nums.reverse();
+        }
     }
 }
 
 #[test]
 fn run() {
-    // let mut a = vec![3, 2, 1];
-    // let mut b = vec![1, 1, 5];
-    // let mut c = vec![1, 3, 2];
-    // let mut d = vec![1, 2, 3];
+    let mut a = vec![3, 2, 1];
+    Solution::next_permutation(&mut a);
+    assert_eq!(a, vec![1, 2, 3]);
+
+    let mut b = vec![1, 1, 5];
+    Solution::next_permutation(&mut b);
+    assert_eq!(b, vec![1, 5, 1]);
+
+    let mut c = vec![1, 3, 2];
+    Solution::next_permutation(&mut c);
+    assert_eq!(c, vec![2, 1, 3]);
+
+    let mut d = vec![1, 2, 3];
+    Solution::next_permutation(&mut d);
+    assert_eq!(d, vec![1, 3, 2]);
+
     let mut e = vec![2, 3, 1];
-
-    // Solution::next_permutation(&mut a);
-    // Solution::next_permutation(&mut b);
-    // Solution::next_permutation(&mut c);
-    // Solution::next_permutation(&mut d);
     Solution::next_permutation(&mut e);
-
-    // assert_eq!(a, vec![1, 2, 3]);
-    // assert_eq!(b, vec![1, 5, 1]);
-    // assert_eq!(c, vec![2, 1, 3]);
-    // assert_eq!(d, vec![1, 3, 2]);
     assert_eq!(e, vec![3, 1, 2]);
 }

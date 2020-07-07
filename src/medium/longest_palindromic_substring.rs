@@ -56,7 +56,7 @@ impl Solution {
 
 #[test]
 fn run() {
-    assert_eq!(Solution::longest_palindrome(String::from("babad")), "aba");
+    assert_eq!(Solution::longest_palindrome(String::from("babad")), "bab");
     assert_eq!(Solution::longest_palindrome(String::from("cbbd")), "bb");
     assert_eq!(Solution::longest_palindrome(String::from("eabcb")), "bcb");
     assert_eq!(Solution::longest_palindrome(String::from("bbbb")), "bbbb");

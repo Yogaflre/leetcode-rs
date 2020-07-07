@@ -55,7 +55,7 @@ impl Trie {
     }
 
     /** Returns if the word is in the trie. */
-    fn search(&mut self, word: String) -> bool {
+    pub fn search(&mut self, word: String) -> bool {
         let chars: Vec<char> = word.chars().collect();
         let mut nodes = &mut self.nodes;
         for i in 0..chars.len() {
@@ -72,7 +72,7 @@ impl Trie {
     }
 
     /** Returns if there is any word in the trie that starts with the given prefix. */
-    fn starts_with(&mut self, prefix: String) -> bool {
+    pub fn starts_with(&mut self, prefix: String) -> bool {
         let chars: Vec<char> = prefix.chars().collect();
         let mut nodes = &mut self.nodes;
         for i in 0..chars.len() {

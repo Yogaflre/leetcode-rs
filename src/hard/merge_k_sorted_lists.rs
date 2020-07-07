@@ -22,7 +22,7 @@ impl Solution {
     /**
      * 遍历lists中所有元素，直到lists为空。构建新链表
      * 每次遍历找到最小的元素插入新链表，当遍历到链表为空时，从lists中删除
-     * TODO 优化 可以用lists中的头结点构造一个最小堆，每次都取最小堆的堆顶插入新链表
+     * 优化 可以用lists中的头结点构造一个最小堆，每次都取最小堆的堆顶插入新链表
      */
     pub fn merge_k_lists(lists: Vec<Option<Box<ListNode>>>) -> Option<Box<ListNode>> {
         let mut lists = lists;

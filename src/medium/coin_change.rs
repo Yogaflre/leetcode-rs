@@ -16,7 +16,6 @@
 // 解题思路
 // 方法一：动态规划
 //  构建长度为amount的数组，用于存储各个余额的最小钱数。遍历coins递归求解该余额的最小钱数
-use std::cmp::min;
 struct Solution;
 impl Solution {
     pub fn coin_change(coins: Vec<i32>, amount: i32) -> i32 {
