@@ -19,4 +19,5 @@ mod remove_invalid_parentheses;
 mod serialize_and_deserialize_binary_tree;
 mod sliding_window_maximum;
 mod trapping_rain_water;
+mod wildcard_matching;
 mod word_search_ii;

@@ -10,13 +10,24 @@ use crate::base::list_node::ListNode;
 struct Solution;
 impl Solution {
     pub fn reverse_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        return Self::reverse_list_loop(head);
-        // return Self::reverse_list_recursive(head);
+        // return Self::reverse_list_loop(head);
+        return Self::reverse_list_recursive(None, head);
     }
 
-    // TODO 递归链表反转
-    fn reverse_list_recursive(mut head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        None
+    /**
+     * 在参数中传递pre节点
+     */
+    fn reverse_list_recursive(
+        mut pre: Option<Box<ListNode>>,
+        mut head: Option<Box<ListNode>>,
+    ) -> Option<Box<ListNode>> {
+        if head.is_some() {
+            let next = head.as_mut().unwrap().next.take();
+            head.as_mut().unwrap().next = pre;
+            return Self::reverse_list_recursive(head, next);
+        } else {
+            return pre;
+        }
     }
 
     fn reverse_list_loop(mut head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {

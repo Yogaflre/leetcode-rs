@@ -17,7 +17,6 @@ impl Solution {
      * 排序
      * 时间复杂度O(nlogn)   空间复杂度O(n)
      * 对nums数组进行clone并排序，依次比较nums和sorted_nums相同索引位置的元素。当不一致时就是最小范围
-     * TODO 优化
      */
     pub fn find_unsorted_subarray(nums: Vec<i32>) -> i32 {
         let mut l = 0;
@@ -25,15 +24,20 @@ impl Solution {
         let mut sorted_nums = nums.clone();
         sorted_nums.sort();
         while l < r {
+            let mut flag = true;
             if nums[l] == sorted_nums[l] {
                 l += 1;
-            } else if nums[r] == sorted_nums[r] {
+                flag = false;
+            }
+            if nums[r] == sorted_nums[r] {
                 r -= 1;
-            } else {
+                flag = false;
+            }
+            if flag {
                 break;
             }
         }
-        if l == r {
+        if l >= r {
             return 0;
         } else {
             return (r - l) as i32 + 1;
