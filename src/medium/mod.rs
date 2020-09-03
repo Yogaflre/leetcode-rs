@@ -53,6 +53,7 @@ mod search_a_2d_matrix_ii;
 mod search_in_rotated_sorted_array;
 mod sort_colors;
 mod sort_list;
+mod spiral_matrix;
 mod subarray_sum_equals_k;
 mod subsets;
 mod target_sum;

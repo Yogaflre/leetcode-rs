@@ -50,7 +50,6 @@ fn select(mut nums: Vec<i32>) -> Vec<i32> {
             nums[min_index] = nums[i];
             nums[i] = tmp;
         }
-        println!("{:?}", nums);
     }
     nums
 }
@@ -84,7 +83,7 @@ fn fast(nums: &mut Vec<i32>, left: usize, right: usize) {
     fast(nums, l + 1, right);
 }
 
-// 归并排序(对半分割->)
+// 归并排序(对半分割 -> 合并两个有序集合)
 fn merge(mut nums: Vec<i32>) -> Vec<i32> {
     if nums.len() < 2 {
         return nums;

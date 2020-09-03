@@ -1,6 +1,7 @@
 mod backtracking;
 mod binary_search;
 mod bit_map;
+mod consistant_hash;
 mod dynamic_programming;
 mod graph;
 mod greedy;
