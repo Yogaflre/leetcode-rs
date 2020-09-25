@@ -18,7 +18,7 @@ struct Solution;
 impl Solution {
     /**
      * 二分查找
-     * 每次取中点的值，判断平方根，不断缩小区间
+     * 每次左右边界和中点的值，判断平方根，不断缩小区间
      */
     pub fn my_sqrt(x: i32) -> i32 {
         if x == 0 {
@@ -31,6 +31,7 @@ impl Solution {
             if mid > x / mid {
                 r = mid - 1;
             } else {
+                // NOTE 因为只取整数，需要判断 mid~mid+1之间是否存在合法值
                 if mid + 1 > x / (mid + 1) {
                     return mid;
                 } else {

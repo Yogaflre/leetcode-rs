@@ -25,7 +25,9 @@ impl Solution {
     /**
      * 递归遍历左右子树
      * 当节点等于p或q时，直接返回该节点；当节点为null时返回0(null)
-     * 当节点不等于p或q时，递归遍历所有子树。当左或右子树不为空时，返回不为空的子树；当两个子树都不为空时，返回root节点
+     * 当节点不等于p或q时，递归遍历所有子树
+     *  当左或右子树不为空时，返回不为空的子树(一个子数为空说明在另一个子数中存在p和q)
+     *  当两个子树都不为空时，返回root节点(两个子树都不为空则说明root为公共祖先)
      */
     pub fn lowest_common_ancestor(root: Option<Rc<RefCell<TreeNode>>>, p: i32, q: i32) -> i32 {
         if let Some(node) = root {

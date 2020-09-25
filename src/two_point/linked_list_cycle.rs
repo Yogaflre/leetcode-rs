@@ -22,22 +22,19 @@
 // Follow up:
 // Can you solve it using O(1) (i.e. constant) memory?
 
-// 解题思路
-// 方法一：快慢指针
-//  一个指针走两步，一个指针走一步、当某个节点为null时候停止
 use crate::base::list_node::ListNode;
 struct Solution;
 impl Solution {
+    /**
+     * 快慢指针
+     * 一个指针走两步，一个指针走一步。直到指针节点为null或两个节点相等时为止
+     */
     pub fn has_cycle(head: Option<Box<ListNode>>) -> bool {
         let mut a = &head;
         let mut b = &head;
-        while a.is_some() && b.is_some() {
+        while b.is_some() && b.as_ref().unwrap().next.is_some() {
             a = &a.as_ref().unwrap().next;
-            if b.as_ref().unwrap().next.is_some() {
-                b = &b.as_ref().unwrap().next.as_ref().unwrap().next;
-            } else {
-                return false;
-            }
+            b = &b.as_ref().unwrap().next.as_ref().unwrap().next;
             if a == b {
                 return true;
             }

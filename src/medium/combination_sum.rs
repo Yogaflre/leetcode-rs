@@ -45,10 +45,6 @@ impl Solution {
         result: &mut Vec<Vec<i32>>,
         index: usize,
     ) {
-        println!(
-            "candidates:{:?}\ntarget:{}\ntmp:{:?}\nresult:{:?}\nindex:{}\n----------------------",
-            candidates, target, tmp, result, index
-        );
         for i in index..candidates.len() {
             if target >= candidates[i] {
                 let mut new_tmp = tmp.clone();

@@ -15,6 +15,7 @@
 struct Solution;
 impl Solution {
     /**
+     * 双指针
      * 设置三个索引位置(m:nums1最大值位置；n:nums2最大值位置；index:nums1尾部)
      * 依次比较m和n位置元素，并将大值添加到index位置
      * 最后再把n的剩余值添加到nums1中
@@ -33,6 +34,7 @@ impl Solution {
             }
             index -= 1;
         }
+        // NOTE 防止nums2还没有遍历完的情况
         while n >= 0 {
             nums1[index as usize] = nums2[n as usize];
             n -= 1;

@@ -15,22 +15,30 @@
 // Output: 0
 // Explanation: In this case, no transaction is done, i.e. max profit = 0.
 
-// 解题思路
-// 方法一：找到最小元素，并计算差值
-// 方法二：暴力所有情况
-use std::cmp::{max, min};
+use std::cmp::max;
 struct Solution;
 impl Solution {
+    /**
+     * 贪心算法
+     * 取当前最小价格，依次计算当前最大利润
+     */
     pub fn max_profit(prices: Vec<i32>) -> i32 {
         let mut profit = 0;
         let mut min_price = i32::max_value();
         for price in prices {
-            min_price = min(price, min_price);
-            profit = max(profit, price - min_price);
+            if price <= min_price {
+                min_price = price;
+            } else {
+                profit = max(profit, price - min_price);
+            }
         }
         return profit;
     }
 
+    /**
+     * 暴力解
+     * 遍历所有情况
+     */
     pub fn max_profit2(prices: Vec<i32>) -> i32 {
         let mut result = 0;
         for i in 0..prices.len() {

@@ -11,15 +11,14 @@
 // Follow up:
 // Could you do this in one pass?
 
-//解题思路
-//方法一(Unsafe)：哨兵节点+双指针
-//  使用双指针，先由头指针走N个结点，再同时走到链表结束。此时第二个指针的位置则是需要被删除的结点
-//方法二：重新构造链表（Safe）
-
 use crate::base::list_node::ListNode;
 
 struct Solution;
 impl Solution {
+    /**
+     * 哨兵节点+双指针
+     * 使用双指针，先由头指针走N个结点，再同时走到链表结束。此时第二个指针的位置则是需要被删除的结点
+     */
     pub fn remove_nth_from_end(head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNode>> {
         unsafe {
             let mut tmp_head = Some(Box::new(ListNode::new(0)));

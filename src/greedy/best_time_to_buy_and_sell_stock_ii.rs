@@ -30,11 +30,11 @@ struct Solution;
 impl Solution {
     /**
      * 贪心算法
-     * 从后往前遍历，只要前一天股票价格低就买入
+     * 遍历，只要第二天比第一天价格高就买入
      */
     pub fn max_profit(prices: Vec<i32>) -> i32 {
         let mut total = 0;
-        for i in (1..prices.len()).rev() {
+        for i in 1..prices.len() {
             if prices[i - 1] < prices[i] {
                 total += prices[i] - prices[i - 1];
             }

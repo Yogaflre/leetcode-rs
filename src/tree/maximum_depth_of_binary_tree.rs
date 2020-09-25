@@ -14,14 +14,16 @@
 //    15   7
 // return its depth = 3.
 
-// 解题思路
-// 方法一：递归
 use crate::base::tree_node::TreeNode;
 use std::cell::RefCell;
 use std::cmp::max;
 use std::rc::Rc;
 struct Solution;
 impl Solution {
+    /**
+     * 递归
+     * 每次递归则+1深度
+     */
     pub fn max_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         if let Some(node) = root {
             let left = node.borrow_mut().left.take();

@@ -28,10 +28,10 @@ impl Solution {
         if let Some(node) = root {
             let mut l_and_r = 0;
             if node.borrow().left.is_some() {
-                l_and_r += 1 + Self::search(&node.borrow().left);
+                l_and_r += 1 + Self::depth(&node.borrow().left);
             }
             if node.borrow().right.is_some() {
-                l_and_r += 1 + Self::search(&node.borrow().right);
+                l_and_r += 1 + Self::depth(&node.borrow().right);
             }
             let l = Self::diameter_of_binary_tree(node.borrow_mut().left.take());
             let r = Self::diameter_of_binary_tree(node.borrow_mut().right.take());
@@ -40,14 +40,17 @@ impl Solution {
         return tmp;
     }
 
-    fn search(root: &Option<Rc<RefCell<TreeNode>>>) -> i32 {
+    /**
+     * 求解二叉树深度
+     */
+    fn depth(root: &Option<Rc<RefCell<TreeNode>>>) -> i32 {
         let mut tmp = 0;
         if let Some(node) = root {
             if node.borrow().left.is_some() {
-                tmp += 1 + Self::search(&node.borrow().left);
+                tmp += 1 + Self::depth(&node.borrow().left);
             }
             if node.borrow().right.is_some() {
-                tmp = max(tmp, 1 + Self::search(&node.borrow().right));
+                tmp = max(tmp, 1 + Self::depth(&node.borrow().right));
             }
         }
         return tmp;
