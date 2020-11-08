@@ -2,6 +2,7 @@ mod is_subsequence;
 mod linked_list_cycle;
 mod longest_word_in_dictionary_through_deleting;
 mod merge_sorted_array;
+mod partition_labels;
 mod reverse_vowels_of_a_string;
 mod sum_of_square_numbers;
 mod two_sum;

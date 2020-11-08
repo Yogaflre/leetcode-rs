@@ -1,7 +1,9 @@
-// <动态规划>
+// 0-1背包问题
 
-// 0-1背包问题(动态规划)：每次遍历一个层级的问题，并去重。第一层去重结果集可以推导出第二层结果集。直至问题规模缩小至完成
-fn zero_one_package(items: &[i32], capacity: usize) -> usize {
+/**
+ * 每次遍历一个层级的问题，并去重。第一层去重结果集可以推导出第二层结果集。直至问题规模缩小至完成
+ */
+fn zero_one_knapsack(items: &[i32], capacity: usize) -> usize {
     if items.is_empty() || capacity == 0 {
         return 0;
     }
@@ -30,11 +32,8 @@ fn zero_one_package(items: &[i32], capacity: usize) -> usize {
     }
     return 0;
 }
+
 #[test]
-fn zero_one_package_test() {
-    assert_eq!(zero_one_package(&vec![2, 2, 4, 6, 3], 9), 9);
+fn zero_one_knapsack_test() {
+    assert_eq!(zero_one_knapsack(&vec![2, 2, 4, 6, 3], 9), 9);
 }
-
-// 求解最短路径(medium::minimum_path_sum)
-
-// 零钱兑换(medium::coin_change)

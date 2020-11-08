@@ -28,7 +28,7 @@ impl Solution {
             } else {
                 map.insert(cs, vec![s]);
             }
-        } 
+        }
         return map.values().map(|x| x.to_vec()).collect();
     }
 }

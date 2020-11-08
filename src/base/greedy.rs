@@ -67,5 +67,4 @@ fn test_remove_num() {
     assert_eq!(remove_num(74615), vec![7, 6, 4, 5]);
 }
 
-
 // 跳跃游戏(medium::jump_game)

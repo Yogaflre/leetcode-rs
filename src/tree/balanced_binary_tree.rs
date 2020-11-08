@@ -27,6 +27,7 @@
 
 use crate::base::tree_node::TreeNode;
 use std::cell::RefCell;
+use std::cmp::max;
 use std::rc::Rc;
 
 struct Solution;
@@ -36,14 +37,36 @@ impl Solution {
      * 求左右子树深度并判断高度。递归左右子树是否平衡
      */
     pub fn is_balanced(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
-        // TODO 完成
-        false
+        if let Some(node) = root {
+            let left = node.borrow_mut().left.take();
+            let right = node.borrow_mut().right.take();
+            // NOTE 首先判断当前左右子树高度是否合法，当不合法时，还得继续递归左右子树当作跟节点判断是否合法
+            if (Self::depth(&left) - Self::depth(&right)).abs() > 1 {
+                return false;
+            } else {
+                return Self::is_balanced(left) && Self::is_balanced(right);
+            }
+        } else {
+            return true;
+        }
     }
 
     /**
      * 求二叉树深度
      */
-    fn depth() -> i32 {
-        0
+    fn depth(root: &Option<Rc<RefCell<TreeNode>>>) -> i32 {
+        if let Some(node) = root {
+            return 1 + max(
+                Self::depth(&node.borrow().left),
+                Self::depth(&node.borrow().right),
+            );
+        } else {
+            return 0;
+        }
     }
+}
+
+#[test]
+fn run() {
+    assert_eq!(Solution::is_balanced(TreeNode::example()), true);
 }

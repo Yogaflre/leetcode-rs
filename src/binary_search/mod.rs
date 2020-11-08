@@ -1,5 +1,6 @@
 mod find_first_and_last_position_of_element_in_sorted_array;
 mod find_minimum_in_rotated_sorted_array;
 mod find_smallest_letter_greater_than_target;
+mod powx_n;
 mod single_element_in_a_sorted_array;
 mod sqrtx;

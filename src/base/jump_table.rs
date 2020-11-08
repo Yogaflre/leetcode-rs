@@ -1,12 +1,7 @@
 // <跳跃表>
-struct JumpTable {
-
-}
+struct JumpTable {}
 
 impl JumpTable {}
 
-
 #[test]
-fn run() {
-    
-}
+fn run() {}

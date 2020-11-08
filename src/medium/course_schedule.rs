@@ -73,7 +73,7 @@ impl Solution {
     pub fn can_finish2(num_courses: i32, prerequisites: Vec<Vec<i32>>) -> bool {
         // 构造图
         let metrix: Vec<Vec<i32>> = vec![vec![0; num_courses as usize]; num_courses as usize];
-        
+
         false
     }
 }

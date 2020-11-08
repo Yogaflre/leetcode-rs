@@ -28,7 +28,7 @@ impl Solution {
      * 递归：将左子树赋值给右子树，右子树赋值给左子树
      */
     pub fn invert_tree(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
-        if root.is_none(){
+        if root.is_none() {
             return None;
         }
         let mut root = root;

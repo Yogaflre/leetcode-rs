@@ -16,26 +16,20 @@
 //    3    3
 // Follow up: Solve it both recursively and iteratively.
 
-// 解题思路
-// 方法一：递归
-//  解题思路：递归左右节点，判断left.left == right.right && left.right == right.left;
-// 方法二：循环
-//  解题思路：递归->循环，用栈模拟递归
 use crate::base::tree_node::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
 struct Solution;
 impl Solution {
+    /*
+    递归
+    递归左右节点，判断left.left == right.right && left.right == right.left;
+    */
     pub fn is_symmetric(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
-        if root.is_some() {
-            return Self::symmetric_recursive(
-                &root.as_ref().unwrap().borrow().left,
-                &root.as_ref().unwrap().borrow().right,
-            );
+        if let Some(node) = root {
+            return Self::symmetric_recursive(&node.borrow().left, &node.borrow().right);
         }
         return true;
-
-        // return Self::symmetric_loop(root);
     }
 
     fn symmetric_recursive(
@@ -48,12 +42,14 @@ impl Solution {
                     && Self::symmetric_recursive(&l.borrow().left, &r.borrow().right)
                     && Self::symmetric_recursive(&l.borrow().right, &r.borrow().left)
             }
-            (Some(_), None) => false,
-            (None, Some(_)) => false,
             (None, None) => true,
+            (_, _) => false,
         };
     }
 
+    /*
+    递归->循环，用栈模拟递归
+     */
     fn symmetric_loop(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
         let mut stack: Vec<Option<Rc<RefCell<TreeNode>>>> = vec![];
         if let Some(node) = root {

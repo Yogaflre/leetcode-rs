@@ -13,39 +13,41 @@
 // Output: -1
 // Note: You may assume that you have an infinite number of each kind of coin.
 
-// 解题思路
-// 方法一：动态规划
-//  构建长度为amount的数组，用于存储各个余额的最小钱数。遍历coins递归求解该余额的最小钱数
 struct Solution;
 impl Solution {
+    /**
+     * 保存当前余额需要最小的硬笔数，防止重复遍历
+     */
     pub fn coin_change(coins: Vec<i32>, amount: i32) -> i32 {
         let mut items: Vec<i32> = vec![0; amount as usize + 1];
         return Solution::change(&coins, amount, &mut items);
     }
     fn change(coins: &Vec<i32>, amount: i32, items: &mut Vec<i32>) -> i32 {
+        // NOTE -1 表示非法数据
         if amount < 0 {
             return -1;
         }
+        // NOTE 表示钱刚好花完，返回0表示需要0个硬币
         if amount == 0 {
             return 0;
         }
-        let index: usize = amount as usize;
-        if items[index] != 0 {
-            return items[index];
+        // NOTE 如果当前amount存在最小硬币数，则直接返回（动态规划）
+        if items[amount as usize] != 0 {
+            return items[amount as usize];
         }
         let mut tmp = i32::max_value();
-        for i in 0..coins.len() {
-            let num = Solution::change(coins, amount - coins[i], items);
-            if num >= 0 && num < tmp {
-                tmp = num + 1;
+        for c in coins {
+            let coin = 1 + Solution::change(coins, amount - c, items);
+            // NOTE 如果数据合法，则设置当前最小硬币数
+            if coin > 0 && coin < tmp {
+                tmp = coin;
             }
         }
         if tmp == i32::max_value() {
-            items[index] = -1;
-        } else {
-            items[index] = tmp;
+            tmp = -1;
         }
-        return items[index];
+        items[amount as usize] = tmp;
+        return tmp;
     }
 }
 #[test]

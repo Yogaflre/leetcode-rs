@@ -1,4 +1,12 @@
 mod balanced_binary_tree;
 mod diameter_of_binary_tree;
 mod invert_binary_tree;
+mod longest_univalue_path;
 mod maximum_depth_of_binary_tree;
+mod merge_two_binary_trees;
+mod minimum_depth_of_binary_tree;
+mod path_sum;
+mod path_sum_iii;
+mod subtree_of_another_tree;
+mod sum_of_left_leaves;
+mod symmetric_tree;
