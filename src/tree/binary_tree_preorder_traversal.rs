@@ -12,9 +12,6 @@
 // Output: [1,2,3]
 // Follow up: Recursive solution is trivial, could you do it iteratively?
 
-// 解题思路
-// 方法一：递归
-// 方法二：循环(使用栈模拟递归)
 use crate::base::tree_node::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
@@ -22,27 +19,36 @@ struct Solution;
 impl Solution {
     pub fn preorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut result: Vec<i32> = vec![];
-        // Self::traversal_recursive(root, &mut result);
-        Self::traversal_loop(root, &mut result);
+        // Self::recursive(root, &mut result);
+        Self::loops(root, &mut result);
         return result;
     }
 
-    fn traversal_recursive(root: Option<Rc<RefCell<TreeNode>>>, result: &mut Vec<i32>) {
+    /*
+    递归
+    */
+    fn recursive(root: Option<Rc<RefCell<TreeNode>>>, result: &mut Vec<i32>) {
         if let Some(node) = root {
             result.push(node.borrow().val);
-            Self::traversal_recursive(node.borrow_mut().left.take(), result);
-            Self::traversal_recursive(node.borrow_mut().right.take(), result);
+            Self::recursive(node.borrow_mut().left.take(), result);
+            Self::recursive(node.borrow_mut().right.take(), result);
         }
     }
 
-    fn traversal_loop(mut root: Option<Rc<RefCell<TreeNode>>>, result: &mut Vec<i32>) {
+    /*
+    循环：使用栈模拟递归
+    */
+    fn loops(mut root: Option<Rc<RefCell<TreeNode>>>, result: &mut Vec<i32>) {
+        // NOTE 栈用来保存未遍历右子树的所以节点
         let mut stack: Vec<Rc<RefCell<TreeNode>>> = vec![];
-        while !stack.is_empty() || root.is_some() {
+        while root.is_some() || !stack.is_empty() {
+            // NOTE 使用root作为当前节点，先递归所有的左子树，并将记录过的节点存入stack
             while let Some(node) = root {
                 result.push(node.borrow().val);
                 stack.push(node.clone());
                 root = node.borrow_mut().left.take();
             }
+            // NOTE 当左子树遍历完后，开始遍历stack中的右子树
             if let Some(node) = stack.pop() {
                 root = node.borrow_mut().right.take();
             }

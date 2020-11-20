@@ -12,9 +12,6 @@
 // Output: [1,3,2]
 // Follow up: Recursive solution is trivial, could you do it iteratively?
 
-// 解题思路
-// 方法一：递归
-// 方法二：循环(使用栈模拟递归)
 use crate::base::tree_node::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
@@ -22,29 +19,38 @@ struct Solution;
 impl Solution {
     pub fn inorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut result: Vec<i32> = vec![];
-        // Self::traversal_recursive(root, &mut result);
-        Self::traversal_loop(root, &mut result);
+        // Self::recursive(root, &mut result);
+        Self::loops(root, &mut result);
         return result;
     }
 
-    fn traversal_recursive(root: Option<Rc<RefCell<TreeNode>>>, result: &mut Vec<i32>) {
+    /*
+    递归
+    */
+    fn recursive(root: Option<Rc<RefCell<TreeNode>>>, result: &mut Vec<i32>) {
         if let Some(node) = root {
-            Self::traversal_recursive(node.borrow_mut().left.take(), result);
+            Self::recursive(node.borrow_mut().left.take(), result);
             result.push(node.borrow().val);
-            Self::traversal_recursive(node.borrow_mut().right.take(), result);
+            Self::recursive(node.borrow_mut().right.take(), result);
         }
     }
 
-    fn traversal_loop(mut root: Option<Rc<RefCell<TreeNode>>>, result: &mut Vec<i32>) {
+    /*
+    循环：使用栈模拟递归
+     */
+    fn loops(mut root: Option<Rc<RefCell<TreeNode>>>, result: &mut Vec<i32>) {
+        // NOTE stack保存所有未记录的节点
         let mut stack: Vec<Rc<RefCell<TreeNode>>> = vec![];
-        while !stack.is_empty() || root.is_some() {
+        while root.is_some() || !stack.is_empty() {
+            // NOTE 只递归寻找左子树叶子节点，并添加到stack中
             while let Some(node) = root {
                 stack.push(node.clone());
                 root = node.borrow_mut().left.take();
             }
-            if let Some(tmp) = stack.pop() {
-                result.push(tmp.borrow().val);
-                root = tmp.borrow_mut().right.take();
+            // NOTE 记录当前节点值，并继续查找右子树
+            if let Some(node) = stack.pop() {
+                result.push(node.borrow().val);
+                root = node.borrow_mut().right.take();
             }
         }
     }

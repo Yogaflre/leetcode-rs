@@ -8,8 +8,8 @@ pub struct TreeNode {
     pub right: Option<Rc<RefCell<TreeNode>>>,
 }
 
-// 前序遍历(medium::binary_tree_preorder_traversal)
-// 中序遍历(medium::binary_tree_inorder_traversal)
+// 前序遍历(tree::binary_tree_preorder_traversal)
+// 中序遍历(tree::binary_tree_inorder_traversal)
 
 impl TreeNode {
     #[inline]

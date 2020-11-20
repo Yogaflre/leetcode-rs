@@ -4,7 +4,6 @@ mod intersection_of_two_arrays;
 mod longest_common_prefix;
 mod majority_element;
 mod min_stack;
-mod move_zeroes;
 mod palindrome_number;
 mod partition_array_into_three_parts_with_equal_sum;
 mod plus_one;

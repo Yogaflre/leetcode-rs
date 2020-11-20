@@ -1,7 +1,5 @@
 mod add_two_numbers;
-mod binary_tree_inorder_traversal;
 mod binary_tree_level_order_traversal;
-mod binary_tree_preorder_traversal;
 mod combination_sum;
 mod combinations;
 mod construct_binary_tree_from_preorder_and_inorder_traversal;
@@ -15,7 +13,6 @@ mod find_the_duplicate_number;
 mod flatten_binary_tree_to_linked_list;
 mod generate_parentheses;
 mod group_anagrams;
-mod house_robber_iii;
 mod implement_trie_prefix_tree;
 mod insert_delete_getrandom_o1;
 mod jump_game;

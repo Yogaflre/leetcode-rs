@@ -25,8 +25,6 @@
 // 解题思路
 // 方法一：HashMap + 双端链表
 //  使用HashMap来存储<k,v>元素，使用vec来存储优先级。put和get时间复杂度都为O(n)
-// 方法二：
-//  TODO
 use std::collections::{HashMap, VecDeque};
 
 struct LRUCache {
