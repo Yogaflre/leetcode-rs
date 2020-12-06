@@ -1,4 +1,5 @@
 // <实现字典树>
+
 // Implement a trie with insert, search, and startsWith methods.
 // Example:
 // Trie trie = new Trie();
@@ -14,7 +15,6 @@
 // You may assume that all inputs are consist of lowercase letters a-z.
 // All inputs are guaranteed to be non-empty strings.
 
-// 解题思路：了解字典树特性
 use crate::base::trie::Trie;
 impl Trie {
     // 构建字典树(假设只存储26个英文字母)
@@ -90,7 +90,6 @@ impl Trie {
 fn run() {
     let words = vec!["how", "hi", "her", "hello", "so", "see"];
     let t: Trie = Trie::create(words);
-    println!("{:?}", t);
 
     let mut trie = Trie::new();
     trie.insert("apple".to_string());

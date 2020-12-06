@@ -54,23 +54,24 @@ impl Solution {
 
     /**
      * 计数
-     * 递归左子树，求得左子树节点总数。判断当前节点是否等于k
-     * 若等于k则直接返回当前节点的值，若不等于k则返回当前节点和左右子树节点总和
      * 空间复杂度O(1)
      */
     pub fn kth_smallest2(root: Option<Rc<RefCell<TreeNode>>>, k: i32) -> i32 {
-        let mut n = 0;
-        Self::recursive2(root, k, &mut n);
-        return n;
+        let mut res = 0;
+        Self::recursive2(root, k, &mut res);
+        return res;
     }
 
-    fn recursive2(root: Option<Rc<RefCell<TreeNode>>>, k: i32, n: &mut i32) -> i32 {
+    fn recursive2(root: Option<Rc<RefCell<TreeNode>>>, k: i32, res: &mut i32) -> i32 {
         if let Some(node) = root {
-            let l_count = 1 + Self::recursive2(node.borrow_mut().left.take(), k, n);
-            if l_count == k {
-                *n = node.borrow().val;
+            // NOTE 递归左子树，计算当前节点树（二叉搜索树左子树最小）
+            let l = 1 + Self::recursive2(node.borrow_mut().left.take(), k, res);
+            if l == k {
+                // NOTE 当左子树存在k时，将res赋值为当前节点的值
+                *res = node.borrow().val;
             }
-            return l_count + Self::recursive2(node.borrow_mut().right.take(), k - l_count, n);
+            // NOTE 如果左子树不存在则递归右子树查找（注意k的值在右子树也会发生变化）
+            return l + Self::recursive2(node.borrow_mut().right.take(), k - l, res);
         } else {
             return 0;
         }
