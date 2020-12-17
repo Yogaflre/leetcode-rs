@@ -1,4 +1,5 @@
 // <有效的括号>
+
 // Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 // An input string is valid if:
 // Open brackets must be closed by the same type of brackets.
@@ -25,16 +26,12 @@
 // Input: "{[]}"
 // Output: true
 
-//解题思路
-//方法一：match匹配模式
-//  实现思路与方法二相同（通过‘&&’操作符来对false的flag进行持久化）
-//方法二：
-//  1.初始化HashMap，以右括号为key，左括号为value
-//  2.遍历字符，当为左括号时压入栈；当为右括号时取出，并判断是否和对应的括号一致，不一致则返回false
-
 use std::collections::{HashMap, VecDeque};
 struct Solution;
 impl Solution {
+    /*
+     * 实现思路与方法二相同（通过‘&&’操作符来对false的flag进行持久化）
+     */
     pub fn is_valid(s: String) -> bool {
         let mut deque: VecDeque<char> = VecDeque::new();
         let mut flag: bool = true;
@@ -48,6 +45,10 @@ impl Solution {
         flag && deque.is_empty()
     }
 
+    /*
+     * 1.初始化HashMap，以右括号为key，左括号为value
+     * 2.遍历字符，当为左括号时压入栈；当为右括号时取出，并判断是否和对应的括号一致，不一致则返回false
+     */
     pub fn is_valid2(s: String) -> bool {
         let mut deque: VecDeque<char> = VecDeque::new();
         let mut map: HashMap<char, char> = HashMap::new();

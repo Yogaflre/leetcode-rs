@@ -7,29 +7,30 @@
 
 // Note: The length of temperatures will be in the range [1, 30000]. Each temperature will be an integer in the range [30, 100].
 
-use std::collections::VecDeque;
 struct Solution;
 impl Solution {
     /**
      * 栈(窗口)
-     * 当栈为空或当前元素小于栈顶元素时候，入栈
-     * 否则依次对比当前元素与出栈元素，并记录差值到res
      */
     pub fn daily_temperatures(t: Vec<i32>) -> Vec<i32> {
         let mut res: Vec<i32> = vec![0; t.len()];
-        let mut stack: VecDeque<usize> = VecDeque::new();
-        for i in 0..t.len() {
-            while !stack.is_empty() && t[i] > t[*stack.back().unwrap()] {
-                let pre = stack.pop_back().unwrap();
-                res[pre] = (i - pre) as i32;
+        // NOTE 使用栈来保存每个元素的index位置
+        let mut stack: Vec<usize> = vec![];
+        for (i, v) in t.iter().enumerate() {
+            // NOTE  栈不为空，当前值大于栈顶值时，代表气温比之前的天气高。需要对栈中比当前元素小的温度计算差值
+            while !stack.is_empty() && *v > t[stack[stack.len() - 1]] {
+                let tmp = stack.pop().unwrap();
+                res[tmp] = (i - tmp) as i32;
             }
-            stack.push_back(i);
+            // 再每次将最新元素入栈，用作与之后的天气比较
+            stack.push(i);
         }
+
         return res;
     }
 
     /**
-     * 暴力解   O(n)
+     * 暴力解   O(n^2)
      * 双层循环，寻找比当前值大的温度
      */
     pub fn daily_temperatures2(t: Vec<i32>) -> Vec<i32> {

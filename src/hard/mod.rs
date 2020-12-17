@@ -6,7 +6,6 @@ mod first_missing_positive;
 mod jump_game_ii;
 mod largest_rectangle_in_histogram;
 mod lfu_cache;
-mod longest_consecutive_sequence;
 mod longest_valid_parentheses;
 mod maximal_rectangle;
 mod median_of_two_sorted_arrays;

@@ -13,17 +13,14 @@ use std::collections::HashSet;
 struct Solution;
 impl Solution {
     /**
-     * <Hash表> 天才解法
-     * 用nums构建hashset，并遍历hashset
-     * 当前元素是起始元素时(前一个元素不在set中)，不断遍历直到找不到下一个连续元素，并记录最大值
+     * <Hash表>
      */
     pub fn longest_consecutive(nums: Vec<i32>) -> i32 {
-        let mut set: HashSet<i32> = HashSet::new();
-        for n in nums {
-            set.insert(n);
-        }
+        // 使用hash表存储，方便查找确定连续元素
+        let set: HashSet<i32> = nums.into_iter().collect::<HashSet<i32>>();
         let mut res = 0;
         for start in &set {
+            // NOTE 前一个数字不在set中，说明是起始数字。从起始数字开始遍历找到最多的连续数字
             if !set.contains(&(start - 1)) {
                 let mut end = *start + 1;
                 while set.contains(&end) {

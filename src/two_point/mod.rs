@@ -6,6 +6,5 @@ mod move_zeroes;
 mod partition_labels;
 mod reverse_vowels_of_a_string;
 mod sum_of_square_numbers;
-mod two_sum;
 mod two_sum_ii_input_array_is_sorted;
 mod valid_palindrome_ii;

@@ -25,9 +25,6 @@
 // minStack.top();    // return 0
 // minStack.getMin(); // return -2
 
-// 解题思路
-// 方法一：使用额外一个属性存储当前最小值(get_min之后也记录最小值)
-
 struct MinStack {
     stack: Vec<i32>,
     minimum: Option<i32>,
