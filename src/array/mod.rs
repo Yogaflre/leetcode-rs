@@ -1,0 +1,11 @@
+mod array_nesting;
+mod beautiful_arrangement_ii;
+mod degree_of_an_array;
+mod find_the_duplicate_number;
+mod kth_smallest_element_in_a_sorted_matrix;
+mod max_chunks_to_make_sorted;
+mod max_consecutive_ones;
+mod reshape_the_matrix;
+mod search_a_2d_matrix_ii;
+mod set_mismatch;
+mod toeplitz_matrix;

@@ -22,13 +22,14 @@
 // Follow-up:
 // Can you solve it without using extra space?
 
-// 解题思路
-// 方法一：三指针+找规律(https://leetcode.com/problems/linked-list-cycle-ii/discuss/44774/Java-O(1)-space-solution-with-detailed-explanation.)
-//  首先用快慢指针找到相交的节点，由于快指针(f)的移动速度是慢指针(s)的两倍，所以快指针的移动距离为慢指针的两倍
-//  可以推导出慢指针再走到循环点的距离和从头走到循环点的距离相同(参见上面的题解)，所以新建tmp指针从头走，慢指针从相交点走，两个节点最终会相遇在循环点
 use crate::base::list_node::ListNode;
 struct Solution;
 impl Solution {
+    /*
+     * 三指针+找规律(https://leetcode.com/problems/linked-list-cycle-ii/discuss/44774/Java-O(1)-space-solution-with-detailed-explanation.)
+     * 首先用快慢指针找到相交的节点，由于快指针(f)的移动速度是慢指针(s)的两倍，所以快指针的移动距离为慢指针的两倍
+     * 可以推导出慢指针再走到循环点的距离和从头走到循环点的距离相同(参见上面的题解)，所以新建tmp指针从头走，慢指针从相交点走，两个节点最终会相遇在循环点
+     */
     pub fn detect_cycle(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         let mut slow = &head;
         let mut fast = &head;

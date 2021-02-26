@@ -1,3 +1,4 @@
+mod array;
 mod backtracking;
 mod base;
 mod binary_search;
