@@ -17,18 +17,24 @@
 // Can you do it like a boss? Do it without using any builtin function like __builtin_popcount in c++ or in any other language.
 
 struct Solution;
+/*
+ * 0  1  2  3  4  5  6  7  8  9
+ * 0  1  1  2  1  2  2  3  1  2
+ */
 impl Solution {
-    /**
-     *
-     */
     pub fn count_bits(num: i32) -> Vec<i32> {
-        /**
-         * 找规律
-         * 0  1  2  3  4  5  6  7
-         * 0  1  1  2  1  2  2  3
-         * 当n/二进制整数==0时，res[n]=1，并且将除数设置为最新的二进制整数
-         * 否则res[n]=res[余数] + 1
-         */
+        let mut res: Vec<i32> = vec![0; num as usize + 1];
+        for n in 1..=num as usize {
+            res[n] = res[n >> 1] + (n & 1) as i32;
+        }
+        return res;
+    }
+
+    /**
+     * 动态规划
+     * 当数字等于2的幂时，总为1
+     */
+    pub fn count_bits2(num: i32) -> Vec<i32> {
         let mut res: Vec<i32> = vec![0; num as usize + 1];
         let mut div = 1;
         for n in 1..=num as usize {
@@ -43,19 +49,29 @@ impl Solution {
         return res;
     }
 
-    /**
-     * 暴力法
-     * 把每个数字都转换为二进制串，遍历二进制串统计个数
+    /*
+     * 暴力法，利用rust函数
      */
-    pub fn count_bits2(num: i32) -> Vec<i32> {
+    pub fn count_bits3(num: i32) -> Vec<i32> {
         let mut res: Vec<i32> = vec![];
         for n in 0..=num {
-            let tmp: String = format!("{:b}", n);
+            res.push(n.count_ones() as i32);
+        }
+        return res;
+    }
+
+    /**
+     * 暴力法，遍历每个数字
+     */
+    pub fn count_bits4(num: i32) -> Vec<i32> {
+        let mut res: Vec<i32> = vec![];
+        for mut n in 0..=num {
             let mut count = 0;
-            for c in tmp.chars() {
-                if c == '1' {
+            while n != 0 {
+                if n & 1 == 1 {
                     count += 1;
                 }
+                n >>= 1;
             }
             res.push(count);
         }

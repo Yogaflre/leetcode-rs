@@ -1,1 +1,12 @@
-
+mod binary_number_with_alternating_bits;
+mod counting_bits;
+mod hamming_distance;
+mod maximum_product_of_word_lengths;
+mod missing_number;
+mod number_complement;
+mod power_of_four;
+mod power_of_two;
+mod reverse_bits;
+mod single_number;
+mod single_number_iii;
+mod sum_of_two_integers;

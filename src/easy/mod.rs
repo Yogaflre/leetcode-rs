@@ -10,4 +10,3 @@ mod reverse_integer;
 mod roman_to_integer;
 mod search_insert_position;
 mod shortest_unsorted_continuous_subarray;
-mod single_number;
