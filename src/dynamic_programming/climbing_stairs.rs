@@ -18,11 +18,12 @@
 // 2. 1 step + 2 steps
 // 3. 2 steps + 1 step
 
-// 解题思路
-// 方法一：动态规划
-//  将每一层台阶的次数持久化，避免重复计算
 struct Solution;
 impl Solution {
+    /*
+     * 动态规划
+     * 统计爬1台阶和2个台阶的情况
+     */
     pub fn climb_stairs(n: i32) -> i32 {
         let mut items: Vec<i32> = vec![0; n as usize + 1];
         return Solution::climb(n as usize, &mut items);

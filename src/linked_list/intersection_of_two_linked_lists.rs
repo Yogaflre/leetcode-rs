@@ -26,25 +26,14 @@
 use crate::base::list_node::ListNode;
 struct Solution;
 impl Solution {
-    /**
-     * BF暴力搜索
+    /*
+     * 构造环形链表
+     * TODO 将两个链表尾部分别和另一个链表头部相连，两个链表就变成了相交的循环链表
      */
     pub fn get_intersection_node(
-        head_a: Option<Box<ListNode>>,
-        head_b: Option<Box<ListNode>>,
+        mut head_a: Option<Box<ListNode>>,
+        mut head_b: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
-        let mut head_a = head_a;
-        while head_a.is_some() {
-            let mut tmp = &head_b;
-            while tmp.is_some() {
-                if head_a == *tmp {
-                    return head_a;
-                } else {
-                    tmp = &tmp.as_ref().unwrap().next;
-                }
-            }
-            head_a = head_a.unwrap().next;
-        }
         return None;
     }
 }

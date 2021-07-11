@@ -13,13 +13,29 @@
 // Note:
 // You may assume k is always valid, 1 ≤ k ≤ array's length.
 
+use std::cmp::Reverse;
+use std::collections::BinaryHeap;
 struct Solution;
 impl Solution {
+    /*
+     * 最小堆
+     */
+    pub fn find_kth_largest(nums: Vec<i32>, k: i32) -> i32 {
+        let mut heap: BinaryHeap<Reverse<i32>> = BinaryHeap::new();
+        for n in nums.iter() {
+            heap.push(Reverse(*n));
+            if heap.len() > k as usize {
+                heap.pop();
+            }
+        }
+        return heap.pop().unwrap().0;
+    }
+
     /**
      * 排序
      * 由大到小排序，则第k+1个元素符合题意
      */
-    pub fn find_kth_largest(nums: Vec<i32>, k: i32) -> i32 {
+    pub fn find_kth_largest2(nums: Vec<i32>, k: i32) -> i32 {
         if nums.len() == 0 {
             return 0;
         }

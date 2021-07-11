@@ -27,9 +27,6 @@ impl Solution {
             slow = &mut slow.as_mut().unwrap().next;
             fast = fast.unwrap().next.unwrap().next;
         }
-        if fast.is_some() {
-            slow = &mut slow.as_mut().unwrap().next;
-        }
         let mut last = Self::reverse_loop(slow.take());
         while head.is_some() && last.is_some() {
             let h = head.unwrap();
@@ -57,6 +54,10 @@ impl Solution {
 
 #[test]
 fn run() {
+    assert_eq!(
+        Solution::is_palindrome(ListNode::create(vec![1, 2, 1])),
+        true
+    );
     assert_eq!(
         Solution::is_palindrome(ListNode::create(vec![1, 1, 2, 1])),
         false

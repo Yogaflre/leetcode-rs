@@ -1,4 +1,5 @@
 // <岛屿的最大面积>
+
 // Given a non-empty 2D array grid of 0's and 1's, an island is a group of 1's (representing land) connected 4-directionally (horizontal or vertical.)
 // You may assume all four edges of the grid are surrounded by water.
 // Find the maximum area of an island in the given 2D array. (If there is no island, the maximum area is 0.)
@@ -19,9 +20,6 @@
 // Given the above grid, return 0.
 // Note: The length of each dimension in the given grid does not exceed 50.
 
-// 解题思路
-// 方法一：动态规划
-//  依次遍历所有节点，对每个节点都进行递归展开，寻找所有相连接的岛屿(遍历过的节点均赋值为0)，再和最大值进行比较
 struct Solution;
 impl Solution {
     pub fn max_area_of_island(grid: Vec<Vec<i32>>) -> i32 {
@@ -41,7 +39,7 @@ impl Solution {
     fn find(i: usize, j: usize, grid: &mut Vec<Vec<i32>>) -> i32 {
         let mut tmp = 0;
         if grid[i][j] == 1 {
-            // NOTE 很关键！将遍历过的节点都赋值为0，之后遍历时就不用再计算该节点了
+            // NOTE 将遍历过的节点都赋值为0，之后遍历时就不用再计算该节点了
             grid[i][j] = 0;
             tmp += 1;
             if i > 0 {

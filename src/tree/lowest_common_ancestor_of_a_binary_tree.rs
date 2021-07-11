@@ -70,9 +70,9 @@ impl Solution {
         let mut q_path = vec![];
         Self::dfs2(&root, p.unwrap().borrow().val, &mut p_path);
         Self::dfs2(&root, q.unwrap().borrow().val, &mut q_path);
-        let mut index = 0; 
-        let mut res = 0; 
-        while (index < p_path.len() && index < q_path.len() && p_path[index] == q_path[index]) {
+        let mut index = 0;
+        let mut res = 0;
+        while index < p_path.len() && index < q_path.len() && p_path[index] == q_path[index] {
             res = p_path[index];
             index += 1;
         }

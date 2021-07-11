@@ -14,7 +14,7 @@ struct BitMap {
 impl BitMap {
     pub fn new(nbits: usize) -> BitMap {
         BitMap {
-            nbits: nbits,
+            nbits,
             bytes: vec![0; (nbits / 8) + 1],
             divid: 8,
         }
