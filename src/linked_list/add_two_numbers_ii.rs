@@ -16,7 +16,7 @@ use std::collections::LinkedList;
 struct Solution;
 impl Solution {
     /**
-     * 遍历获取所有链表的值，依次按位相加
+     * 不能反转链表的情况下，使用新队列来保存数值后计算
      */
     pub fn add_two_numbers(
         l1: Option<Box<ListNode>>,
@@ -54,5 +54,65 @@ impl Solution {
             head = node;
         }
         return head;
+    }
+
+    /*
+     * 1.反转链表
+     * 2.遍历链表依次相加
+     */
+    pub fn add_two_numbers2(
+        l1: Option<Box<ListNode>>,
+        l2: Option<Box<ListNode>>,
+    ) -> Option<Box<ListNode>> {
+        return Self::reverse_list(
+            None,
+            Self::add_two_number(Self::reverse_list(None, l1), Self::reverse_list(None, l2)),
+        );
+    }
+
+    fn reverse_list(
+        pre: Option<Box<ListNode>>,
+        head: Option<Box<ListNode>>,
+    ) -> Option<Box<ListNode>> {
+        if let Some(mut n) = head {
+            let next = n.next.take();
+            n.next = pre;
+            return Self::reverse_list(Some(n), next);
+        } else {
+            return pre;
+        }
+    }
+
+    fn add_two_number(
+        l1: Option<Box<ListNode>>,
+        l2: Option<Box<ListNode>>,
+    ) -> Option<Box<ListNode>> {
+        let mut l1 = l1.as_ref();
+        let mut l2 = l2.as_ref();
+
+        let mut root = ListNode::new(0);
+        let mut carry = 0;
+        let mut tmp = &mut root;
+        while l1.is_some() || l2.is_some() {
+            let v1: i32 = l1.map_or(0, |n| n.val);
+            let v2: i32 = l2.map_or(0, |n| n.val);
+            let sum = v1 + v2 + carry;
+            //NOTE 记录进位值
+            carry = sum / 10;
+            //NOTE 取余数
+            let node = Some(Box::new(ListNode::new(sum % 10)));
+            tmp.next = node;
+
+            tmp = tmp.next.as_mut().unwrap();
+            l1 = l1.and_then(|n| n.next.as_ref());
+            l2 = l2.and_then(|n| n.next.as_ref());
+        }
+
+        //NOTE 校验最后的进位
+        if carry > 0 {
+            let node = Some(Box::new(ListNode::new(carry)));
+            tmp.next = node;
+        }
+        return root.next;
     }
 }

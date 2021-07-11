@@ -1,4 +1,5 @@
 // <编辑距离(莱文斯坦距离)>
+
 // Given two words word1 and word2, find the minimum number of operations required to convert word1 to word2.
 // You have the following 3 operations permitted on a word:
 // Insert a character
@@ -23,9 +24,6 @@
 // exention -> exection (replace 'n' with 'c')
 // exection -> execution (insert 'u')
 
-// 解题思路
-// 方法一：动态规划
-//  先写递归->将递归的中间状态保存下来
 use std::cmp::min;
 struct Solution;
 impl Solution {
@@ -39,6 +37,7 @@ impl Solution {
             &mut matrix,
         );
     }
+
     fn distance(
         word1: &Vec<char>,
         word2: &Vec<char>,

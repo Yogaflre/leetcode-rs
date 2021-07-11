@@ -41,9 +41,9 @@ impl ConsistantHash {
             }
         }
         return ConsistantHash {
-            nodes: nodes,
-            virtual_nodes: virtual_nodes,
-            replica: replica,
+            nodes,
+            virtual_nodes,
+            replica,
         };
     }
 

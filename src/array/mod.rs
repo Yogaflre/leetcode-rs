@@ -1,5 +1,6 @@
 mod array_nesting;
 mod beautiful_arrangement_ii;
+mod count_primes;
 mod degree_of_an_array;
 mod find_the_duplicate_number;
 mod kth_smallest_element_in_a_sorted_matrix;

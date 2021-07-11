@@ -42,7 +42,7 @@ where
             size: 0,
             load_factor: 0.75,
             threshold: Self::get_threshold(capacity, 0.75),
-            capacity: capacity,
+            capacity,
             nodes: vec![vec![]; capacity as usize],
         };
     }
