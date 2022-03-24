@@ -23,12 +23,6 @@
 //      当sum=0时，把现有指针指向的元素写入结果集，同时向中间移动两个指针（*注意*，当写入结果集后要对重复元素进行过滤）
 //  4.最终返回结果集
 
-// 方法二：暴力破解（效率低下，不符合leetcode要求）
-//  1.对原列表进行三重for循环
-//  2.对满足条件的三元组进行排序，并写入HashSet<[i32;3]>（排序是为了去重）
-//  3.将遍历完成的HashSet转换为Vec<Vec<i32>>
-
-use std::collections::HashSet;
 struct Solution;
 impl Solution {
     pub fn three_sum(nums: Vec<i32>) -> Vec<Vec<i32>> {
@@ -71,28 +65,32 @@ impl Solution {
         return result;
     }
 
-    pub fn three_sum1(nums: Vec<i32>) -> Vec<Vec<i32>> {
-        if nums.len() < 3 {
-            return vec![];
-        }
-        let mut result: HashSet<[i32; 3]> = HashSet::new();
-        let len = nums.len();
-        for i in 0..len {
-            for j in (i + 1)..len {
-                for k in (j + 1)..len {
-                    if nums[i] + nums[j] + nums[k] == 0 {
-                        let mut temp = [nums[i], nums[j], nums[k]];
-                        temp.sort();
-                        result.insert(temp);
-                    }
+    /*
+     * 1.排序
+     * 2.优先确定前两个元素（过滤重复元素）
+     * 3.二分查找最后一个元素
+     */
+    pub fn three_sum1(mut nums: Vec<i32>) -> Vec<Vec<i32>> {
+        nums.sort();
+        let mut res: Vec<Vec<i32>> = vec![];
+        let length = nums.len();
+        for i in 0..length {
+            let ni = nums[i];
+            if i > 0 && ni == nums[i - 1] {
+                continue;
+            }
+            for j in (i + 1)..length {
+                let nj = nums[j];
+                if j > i + 1 && nj == nums[j - 1] {
+                    continue;
+                }
+                let target = 0 - (ni + nj);
+                if j + 1 < length && nums[j + 1..length].binary_search(&target).is_ok() {
+                    res.push(vec![ni, nj, target]);
                 }
             }
         }
-        let mut last: Vec<Vec<i32>> = vec![];
-        for x in result {
-            last.push(x.to_vec());
-        }
-        return last;
+        return res;
     }
 }
 

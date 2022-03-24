@@ -8,7 +8,6 @@ mod decode_string;
 mod find_all_anagrams_in_a_string;
 mod flatten_binary_tree_to_linked_list;
 mod group_anagrams;
-mod insert_delete_getrandom_o1;
 mod jump_game;
 mod letter_combinations_of_a_phone_number;
 mod longest_increasing_subsequence;

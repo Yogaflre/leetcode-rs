@@ -1,18 +1,16 @@
 // <排序算法>
 // https://mp.weixin.qq.com/s/jg9hLWhLnRhxHJ49H9E9ng
 
-// 冒泡排序(每次调换左右位置)
+// 冒泡排序(每次调换左右位置，把大的放在后面)
 fn bubble(nums: &mut Vec<i32>) {
-    for i in 0..nums.len() {
-        let mut flag = true;
-        for j in 0..(nums.len() - i - 1) {
-            if nums[j] > nums[j + 1] {
-                flag = false;
-                nums.swap(j, j + 1);
+    let mut flag = true;
+    while flag {
+        flag = false;
+        for i in 1..nums.len() {
+            if nums[i - 1] > nums[i] {
+                nums.swap(i - 1, i);
+                flag = true;
             }
-        }
-        if flag {
-            return;
         }
     }
 }
@@ -41,14 +39,17 @@ fn select(nums: &mut Vec<i32>) {
 
 // 快棑(找标志位->小的放左边；大的放右边—>递归)
 fn fast(nums: &mut Vec<i32>, left: usize, right: usize) {
-    if left >= right { //递归终止条件：如果左右索引位置相同，则不需要排序
+    if left >= right {
+        //递归终止条件：如果左右索引位置相同，则不需要排序
         return;
     }
     let mut l = left;
     let mut r = right;
     let piovt = nums[left]; //选择一个节点作为分割节点
-    while l < r { //将小于piovt的节点都放在piovt左边，大于piovt的值都放在右边
-        while nums[r] >= piovt && l < r { //NOTE 如果选取left为piovt，这里必须优先从右边开始遍历
+    while l < r {
+        //将小于piovt的节点都放在piovt左边，大于piovt的值都放在右边
+        while nums[r] >= piovt && l < r {
+            //NOTE 如果选取left为piovt，这里必须优先从右边开始遍历
             r -= 1;
         }
         while nums[l] <= piovt && l < r {
@@ -98,11 +99,13 @@ fn do_merge(left: Vec<i32>, right: Vec<i32>) -> Vec<i32> {
 fn run() {
     let mut nums = vec![2, 9, 3, 4, 8, 3, 1];
     let mut sorted_nums = vec![1, 2, 3, 3, 4, 8, 9];
-    // bubble(&mut nums);
+    bubble(&mut nums);
     // insert(&mut nums);
     // select(&mut nums);
     // let len = nums.len();
     // fast(&mut nums, 0, len - 1);
-    sorted_nums = merge_split(nums.clone());
+    // sorted_nums = merge_split(nums.clone());
+    // assert_eq!(nums, sorted_nums);
+
     assert_eq!(nums, sorted_nums);
 }
