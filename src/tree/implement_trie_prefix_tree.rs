@@ -29,7 +29,6 @@ impl Trie {
     /** Initialize your data structure here. */
     fn new() -> Self {
         Trie {
-            c: None,
             nodes: vec![None; 26],
             end: false,
         }
@@ -37,52 +36,44 @@ impl Trie {
 
     /** Inserts a word into the trie. */
     fn insert(&mut self, word: String) {
-        let chars: Vec<char> = word.chars().collect();
-        let mut nodes = &mut self.nodes;
-        for i in 0..chars.len() {
-            let node: &mut Option<Trie> = &mut nodes[chars[i] as usize - 97];
-            if node.is_none() {
-                node.replace(Trie {
-                    c: Some(chars[i]),
-                    nodes: vec![None; 26],
-                    end: i == chars.len() - 1,
-                });
-            } else {
-                node.as_mut().unwrap().end = node.as_mut().unwrap().end || i == chars.len() - 1;
+        let mut trie = self;
+        let cs: Vec<char> = word.chars().collect();
+        for i in 0..cs.len() {
+            let index = cs[i] as usize - 'a' as usize;
+            if trie.nodes[index].is_none() {
+                trie.nodes[index] = Some(Trie::new());
             }
-            nodes = &mut node.as_mut().unwrap().nodes;
+            trie = trie.nodes[index].as_mut().unwrap();
         }
+        trie.end = true;
     }
 
     /** Returns if the word is in the trie. */
     pub fn search(&mut self, word: String) -> bool {
-        let chars: Vec<char> = word.chars().collect();
-        let mut nodes = &mut self.nodes;
-        for i in 0..chars.len() {
-            let node: &mut Option<Trie> = &mut nodes[chars[i] as usize - 97];
-            if node.is_none() {
-                return false;
-            }
-            if i == chars.len() - 1 && node.as_ref().unwrap().end {
-                return true;
-            }
-            nodes = &mut node.as_mut().unwrap().nodes;
-        }
-        return false;
+        return self.find(word, true);
     }
 
     /** Returns if there is any word in the trie that starts with the given prefix. */
     pub fn starts_with(&mut self, prefix: String) -> bool {
-        let chars: Vec<char> = prefix.chars().collect();
-        let mut nodes = &mut self.nodes;
-        for i in 0..chars.len() {
-            let node: &mut Option<Trie> = &mut nodes[chars[i] as usize - 97];
-            if node.is_none() {
+        return self.find(prefix, false);
+    }
+
+    fn find(&self, word: String, end: bool) -> bool {
+        let mut trie = self;
+        let cs: Vec<char> = word.chars().collect();
+        for i in 0..cs.len() {
+            let index = cs[i] as usize - 'a' as usize;
+            if let Some(n) = &trie.nodes[index] {
+                trie = n;
+            } else {
                 return false;
             }
-            nodes = &mut node.as_mut().unwrap().nodes;
         }
-        return true;
+        if end {
+            return trie.end;
+        } else {
+            return true;
+        }
     }
 }
 

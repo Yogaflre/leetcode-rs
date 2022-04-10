@@ -73,7 +73,6 @@ fn bm(a: &str, b: &str) -> bool {
     let mut j = i;
 
     while i < mains.len() {
-        println!("i:{} j:{}", i, j);
         if mains[i] == aims[j] {
             // 如果字符相同则同时移动
             if j == 0 {
