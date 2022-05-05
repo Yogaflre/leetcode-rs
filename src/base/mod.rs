@@ -1,11 +1,9 @@
 mod binary_search;
-mod bit_map;
 mod graph;
 mod greedy;
 mod heap;
 mod huffman_coding;
 mod java_map;
-mod jump_table;
 pub mod list_node;
 mod matchs;
 pub mod tree_node;

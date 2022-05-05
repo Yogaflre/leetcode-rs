@@ -48,7 +48,7 @@ impl Codec {
         return chars.iter().collect::<String>();
     }
 
-    /**
+    /*
      * 队列
      * 将节点依次加入队列中，每次遍历队列中的一层树
      */

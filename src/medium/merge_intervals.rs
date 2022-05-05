@@ -14,7 +14,6 @@
 // 解题思路
 // 方法一：
 //  优先用第一个元素排序数组，从第一元素开始遍历。由于是排序数组，只需要进行比较下一个元素是否符合题目要求，并且变更下一个区间的起始位置
-use std::collections::HashSet;
 struct Solution;
 impl Solution {
     pub fn merge(intervals: Vec<Vec<i32>>) -> Vec<Vec<i32>> {

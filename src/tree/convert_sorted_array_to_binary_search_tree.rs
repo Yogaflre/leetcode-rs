@@ -27,7 +27,7 @@ impl Solution {
     // 因为是有序数组，所以每次寻找中间节点为root节点。并且递归左右数组构造二叉树
     fn creator(nums: &Vec<i32>, l: i32, r: i32) -> Option<Rc<RefCell<TreeNode>>> {
         if l <= r {
-            let mid = ((l + r) / 2);
+            let mid = (l + r) / 2;
             let mut root: Option<Rc<RefCell<TreeNode>>> = Some(Rc::new(RefCell::new(TreeNode::new(nums[mid as usize])))); 
             root.as_mut().unwrap().borrow_mut().left = Self::creator(nums, l, mid as i32 - 1);
             root.as_mut().unwrap().borrow_mut().right = Self::creator(nums, mid as i32 + 1, r);

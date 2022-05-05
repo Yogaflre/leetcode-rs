@@ -6,6 +6,7 @@ mod broken_calculator;
 mod can_place_flowers;
 mod maximum_subarray;
 mod minimum_number_of_arrows_to_burst_balloons;
+mod monotone_increasing_digits;
 mod non_decreasing_array;
 mod non_overlapping_intervals;
 mod queue_reconstruction_by_height;

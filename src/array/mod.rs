@@ -10,3 +10,4 @@ mod reshape_the_matrix;
 mod search_a_2d_matrix_ii;
 mod set_mismatch;
 mod toeplitz_matrix;
+mod median_of_two_sorted_arrays;

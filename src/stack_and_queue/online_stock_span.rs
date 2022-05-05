@@ -33,10 +33,6 @@ struct StockSpanner {
     index: i32,
 }
 
-/**
- * `&self` means the method takes an immutable reference.
- * If you need a mutable reference, change it to `&mut self` instead.
- */
 impl StockSpanner {
     fn new() -> Self {
         return StockSpanner {
@@ -50,7 +46,7 @@ impl StockSpanner {
         while self.stack.last().map(|x| x.0 <= price).unwrap_or(false) {
             self.stack.pop();
         }
-        let res = (self.index - self.stack.last().map(|x| x.1).unwrap_or(0));
+        let res = self.index - self.stack.last().map(|x| x.1).unwrap_or(0);
         self.stack.push((price, self.index));
         return res;
     }

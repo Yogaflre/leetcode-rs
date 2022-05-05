@@ -12,14 +12,14 @@
 use std::cmp::{max, min};
 struct Solution;
 impl Solution {
-    /**
+    /*
      * TODO 优化
      */
     pub fn largest_rectangle_area(heights: Vec<i32>) -> i32 {
         0
     }
 
-    /**
+    /*
      * BP暴力法
      * 遍历所有面积
      */

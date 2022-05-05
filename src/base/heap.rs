@@ -107,16 +107,6 @@ impl Heap {
             }
         }
     }
-
-    // TODO 建立大小为N的小顶堆
-    fn topN(nums: Vec<i32>, n: usize) -> Vec<i32> {
-        vec![]
-    }
-
-    // TODO 寻找中位数(建一个小顶堆和大顶堆，大顶堆堆顶元素为中位数)
-    fn find_mid(nums: Vec<i32>) -> i32 {
-        0
-    }
 }
 
 #[test]
@@ -150,6 +140,4 @@ fn run() {
 
     heap.sort();
     assert_eq!(heap.nodes, vec![1, 2, 4, 5, 7]);
-
-    assert_eq!(Heap::topN(vec![4, 1, 7, 9, 5, 3, 9], 4), vec![9, 9, 7, 5]);
 }

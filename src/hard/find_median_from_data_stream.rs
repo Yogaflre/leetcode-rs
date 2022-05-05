@@ -17,14 +17,13 @@
 // addNum(3)
 // findMedian() -> 2
 
-// TODO Follow up:
 // If all integer numbers from the stream are between 0 and 100, how would you optimize it?
 // If 99% of all integer numbers from the stream are between 0 and 100, how would you optimize it?
 
 use std::cmp::Reverse;
 use std::collections::BinaryHeap;
 
-/**
+/*
  * 大顶堆 + 小顶堆
  * 大顶堆存储较小的值，小顶堆存储较大的值
  */
@@ -34,12 +33,8 @@ struct MedianFinder {
     small_heap: BinaryHeap<Reverse<i32>>,
 }
 
-/**
- * `&self` means the method takes an immutable reference.
- * If you need a mutable reference, change it to `&mut self` instead.
- */
 impl MedianFinder {
-    /** initialize your data structure here. */
+    /* initialize your data structure here. */
     fn new() -> Self {
         MedianFinder {
             big_heap: BinaryHeap::new(),
@@ -47,7 +42,7 @@ impl MedianFinder {
         }
     }
 
-    /**
+    /*
      * 根据大小判断num插入哪个堆，并始终保持两个堆的平衡(元素差不超过1)
      */
     fn add_num(&mut self, num: i32) {
@@ -68,7 +63,7 @@ impl MedianFinder {
         }
     }
 
-    /**
+    /*
      * 大小堆大小一样时，取两个堆的堆顶求中位数
      * 否则取元素较多堆的堆顶为中位数
      */

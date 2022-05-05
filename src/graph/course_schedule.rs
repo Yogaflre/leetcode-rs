@@ -25,7 +25,7 @@
 use std::collections::LinkedList;
 struct Solution;
 impl Solution {
-    /**
+    /*
      * 图(dfs)
      * 构造邻接表 -> 遍历图 -> 校验图中是否有环(初始化flags数组)
      * flatgs：1为当前遍历头节点；0为未遍历节点；-1为已遍历节点
@@ -65,66 +65,4 @@ impl Solution {
         flags[i] = -1;
         return true;
     }
-
-    /**
-     * TODO 图(bfs)
-     * 构造邻接表 -> 遍历图 -> 校验图中是否有环
-     */
-    pub fn can_finish2(num_courses: i32, prerequisites: Vec<Vec<i32>>) -> bool {
-        // 构造图
-        let metrix: Vec<Vec<i32>> = vec![vec![0; num_courses as usize]; num_courses as usize];
-
-        false
-    }
-}
-
-#[test]
-fn run() {
-    assert_eq!(
-        Solution::can_finish(4, vec![vec![0, 1], vec![2, 3], vec![1, 2], vec![3, 0]]),
-        false
-    );
-    assert_eq!(
-        Solution::can_finish(
-            8,
-            vec![
-                vec![1, 0],
-                vec![2, 6],
-                vec![1, 7],
-                vec![6, 4],
-                vec![7, 0],
-                vec![0, 5]
-            ]
-        ),
-        true
-    );
-    assert_eq!(
-        Solution::can_finish(3, vec![vec![0, 1], vec![0, 2], vec![1, 2]]),
-        true
-    );
-    assert_eq!(
-        Solution::can_finish(4, vec![vec![0, 1], vec![3, 1], vec![1, 3], vec![3, 2]]),
-        false
-    );
-    assert_eq!(
-        Solution::can_finish(3, vec![vec![1, 0], vec![1, 2], vec![0, 1]]),
-        false
-    );
-    assert_eq!(
-        Solution::can_finish(3, vec![vec![1, 0], vec![2, 0], vec![0, 2]]),
-        false
-    );
-    assert_eq!(
-        Solution::can_finish(3, vec![vec![0, 2], vec![1, 2], vec![2, 0]]),
-        false
-    );
-    assert_eq!(
-        Solution::can_finish(3, vec![vec![1, 0], vec![0, 2], vec![2, 1]]),
-        false
-    );
-    assert_eq!(Solution::can_finish(2, vec![vec![1, 0], vec![0, 1]]), false);
-    assert_eq!(Solution::can_finish(4, vec![vec![3, 0], vec![0, 1]]), true);
-    assert_eq!(Solution::can_finish(3, vec![vec![1, 0], vec![2, 0]]), true);
-    assert_eq!(Solution::can_finish(2, vec![vec![1, 0]]), true);
-    assert_eq!(Solution::can_finish(2, vec![vec![0, 1]]), true);
 }

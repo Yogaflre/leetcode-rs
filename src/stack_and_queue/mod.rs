@@ -4,4 +4,5 @@ mod implement_stack_using_queues;
 mod min_stack;
 mod next_greater_element_ii;
 mod online_stock_span;
+mod remove_duplicate_letters;
 mod valid_parentheses;

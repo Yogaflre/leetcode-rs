@@ -19,10 +19,6 @@ use std::collections::HashSet;
 use std::iter::FromIterator;
 struct Solution;
 impl Solution {
-    /**
-     * DFS
-     * TODO 抄答案了 不是很理解
-     */
     pub fn remove_invalid_parentheses(s: String) -> Vec<String> {
         let chars: Vec<char> = s.chars().collect();
         let mut res: HashSet<String> = HashSet::new();

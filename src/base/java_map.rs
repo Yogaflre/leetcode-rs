@@ -51,7 +51,7 @@ where
         return self.size;
     }
 
-    /**
+    /*
      * 初始化容量为2的指数
      */
     fn init_capacity(capacity: u64) -> u64 {

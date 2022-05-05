@@ -1,6 +1,7 @@
 mod average_of_levels_in_binary_tree;
 mod balanced_binary_tree;
 mod binary_tree_inorder_traversal;
+mod binary_tree_maximum_path_sum;
 mod binary_tree_postorder_traversal;
 mod binary_tree_preorder_traversal;
 mod convert_bst_to_greater_tree;
@@ -23,6 +24,7 @@ mod minimum_depth_of_binary_tree;
 mod path_sum;
 mod path_sum_iii;
 mod second_minimum_node_in_a_binary_tree;
+mod serialize_and_deserialize_binary_tree;
 mod subtree_of_another_tree;
 mod sum_of_left_leaves;
 mod symmetric_tree;

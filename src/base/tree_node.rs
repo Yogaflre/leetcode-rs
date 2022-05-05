@@ -27,9 +27,4 @@ impl TreeNode {
         root.as_ref().unwrap().borrow_mut().right = Some(Rc::new(RefCell::new(TreeNode::new(3))));
         return root;
     }
-
-    // TODO 顺序存储转换为链式存储
-    pub fn create(nodes: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
-        None
-    }
 }
