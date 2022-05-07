@@ -34,7 +34,7 @@ impl Solution {
 }
 
 #[test]
-fn tmp() {
+fn test_sr() {
     let org = vec![1, 2, 3, 4];
     let seqs = vec![vec![1, 2, 3], vec![1, 2, 4], vec![3, 4]];
     assert_eq!(Solution::sequence_reconstruction(org, seqs), true);

@@ -22,21 +22,18 @@
 // You may assume that there are no duplicate edges in the input prerequisites.
 // 1 <= numCourses <= 10^5
 
-use std::collections::LinkedList;
 struct Solution;
 impl Solution {
     /*
      * 图(dfs)
      * 构造邻接表 -> 遍历图 -> 校验图中是否有环(初始化flags数组)
-     * flatgs：1为当前遍历头节点；0为未遍历节点；-1为已遍历节点
+     * flatgs：0为未遍历节点；1为已遍历节点；2为确认正确的节点
      */
     pub fn can_finish(num_courses: i32, prerequisites: Vec<Vec<i32>>) -> bool {
         // 构造图
-        let mut graph: Vec<LinkedList<i32>> = vec![LinkedList::new(); num_courses as usize];
+        let mut graph: Vec<Vec<i32>> = vec![vec![]; num_courses as usize];
         for v in prerequisites {
-            let pre = v[0] as usize;
-            let last = v[1];
-            graph[pre].push_front(last);
+            graph[v[0] as usize].push(v[1]);
         }
         // 遍历图
         let mut flags: Vec<i32> = vec![0; num_courses as usize];
@@ -48,8 +45,8 @@ impl Solution {
         return true;
     }
 
-    fn dfs(graph: &Vec<LinkedList<i32>>, flags: &mut Vec<i32>, i: usize) -> bool {
-        if flags[i] == -1 {
+    fn dfs(graph: &Vec<Vec<i32>>, flags: &mut Vec<i32>, i: usize) -> bool {
+        if flags[i] == 2 {
             return true;
         }
         if flags[i] == 1 {
@@ -62,7 +59,7 @@ impl Solution {
                 return false;
             }
         }
-        flags[i] = -1;
+        flags[i] = 2;
         return true;
     }
 }
