@@ -19,7 +19,7 @@
 
 struct Solution;
 impl Solution {
-    /**
+    /*
      * 快慢指针(参见 linked_list::linked_list_cycle_ii)
      * 由于存在重复元素，把索引位置当做值遍历一定会形成环路
      * 先用快慢指针先找到相交点，再从头新建指针和慢指针一起遍历直到两个索引位置重合，该索引位置就是重复的元素

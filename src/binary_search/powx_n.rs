@@ -21,7 +21,7 @@
 
 struct Solution;
 impl Solution {
-    /**
+    /*
      * 使用折半法快速求幂
      * 参见《SICP》第一章 求幂章节
      */

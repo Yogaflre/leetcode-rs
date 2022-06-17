@@ -15,7 +15,7 @@ use crate::base::list_node::ListNode;
 
 struct Solution;
 impl Solution {
-    /**
+    /*
      * 哨兵节点+双指针
      * 使用双指针，先由头指针走N个结点，再同时走到链表结束。此时第二个指针的位置则是需要被删除的结点
      */
