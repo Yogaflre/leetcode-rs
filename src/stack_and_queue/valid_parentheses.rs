@@ -26,20 +26,20 @@
 // Input: "{[]}"
 // Output: true
 
-use std::collections::{HashMap, VecDeque};
+use std::collections::HashMap;
 struct Solution;
 impl Solution {
     /*
      * 实现思路与方法二相同（通过‘&&’操作符来对false的flag进行持久化）
      */
     pub fn is_valid(s: String) -> bool {
-        let mut deque: VecDeque<char> = VecDeque::new();
+        let mut deque: Vec<char> = vec![];
         let mut flag: bool = true;
         s.chars().for_each(|x| match x {
-            '(' | '[' | '{' => deque.push_front(x),
-            '}' => flag = (deque.pop_front() == Some('{')) && flag,
-            ']' => flag = (deque.pop_front() == Some('[')) && flag,
-            ')' => flag = (deque.pop_front() == Some(')')) && flag,
+            '(' | '[' | '{' => deque.push(x),
+            '}' => flag = (deque.pop() == Some('{')) && flag,
+            ']' => flag = (deque.pop() == Some('[')) && flag,
+            ')' => flag = (deque.pop() == Some(')')) && flag,
             _ => flag = false,
         });
         flag && deque.is_empty()
@@ -50,28 +50,20 @@ impl Solution {
      * 2.遍历字符，当为左括号时压入栈；当为右括号时取出，并判断是否和对应的括号一致，不一致则返回false
      */
     pub fn is_valid2(s: String) -> bool {
-        let mut deque: VecDeque<char> = VecDeque::new();
         let mut map: HashMap<char, char> = HashMap::new();
         map.insert('}', '{');
-        map.insert(']', '[');
         map.insert(')', '(');
-        for i in s.chars() {
-            if map.get(&i).is_none() {
-                deque.push_front(i);
+        map.insert(']', '[');
+        let mut stack: Vec<char> = vec![];
+        for c in s.chars() {
+            if map.get(&c).is_none() {
+                stack.push(c)
             } else {
-                if map[&i] != deque.pop_front().unwrap_or(' ') {
+                if map[&c] != stack.pop().unwrap_or(' ') {
                     return false;
                 }
             }
         }
-        return deque.is_empty();
+        return stack.is_empty();
     }
-}
-
-#[test]
-fn run() {
-    assert_eq!(Solution::is_valid(String::from("{[]}")), true);
-    assert_eq!(Solution::is_valid(String::from("([)]")), false);
-    assert_eq!(Solution::is_valid(String::from("[")), false);
-    assert_eq!(Solution::is_valid(String::from("]")), false);
 }

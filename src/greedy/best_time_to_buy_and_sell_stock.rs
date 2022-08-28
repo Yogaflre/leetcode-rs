@@ -18,45 +18,17 @@
 use std::cmp::max;
 struct Solution;
 impl Solution {
-    /**
-     * 贪心算法
-     * 取当前最小价格，依次计算当前最大利润
-     */
     pub fn max_profit(prices: Vec<i32>) -> i32 {
         let mut profit = 0;
-        let mut min_price = i32::max_value();
-        for price in prices {
-            if price <= min_price {
-                min_price = price;
+        let last_index = prices.len() - 1;
+        let mut tmp: i32 = prices[last_index];
+        for n in prices[..last_index].into_iter().rev() {
+            if *n > tmp {
+                tmp = *n;
             } else {
-                profit = max(profit, price - min_price);
+                profit = max(profit, tmp - *n);
             }
         }
         return profit;
     }
-
-    /**
-     * 暴力解
-     * 遍历所有情况
-     */
-    pub fn max_profit2(prices: Vec<i32>) -> i32 {
-        let mut result = 0;
-        for i in 0..prices.len() {
-            let mut profit = 0;
-            for j in i + 1..prices.len() {
-                if prices[j] > prices[i] {
-                    profit = max(profit, prices[j] - prices[i]);
-                }
-            }
-            result = max(result, profit);
-        }
-        return result;
-    }
-}
-
-#[test]
-fn run() {
-    assert_eq!(Solution::max_profit(vec![3, 2, 6, 5, 0, 3]), 4);
-    assert_eq!(Solution::max_profit(vec![7, 1, 5, 3, 6, 4]), 5);
-    assert_eq!(Solution::max_profit(vec![7, 6, 4, 3, 1]), 0);
 }

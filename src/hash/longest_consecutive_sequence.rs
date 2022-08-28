@@ -12,7 +12,7 @@ use std::cmp::max;
 use std::collections::HashSet;
 struct Solution;
 impl Solution {
-    /**
+    /*
      * <Hash表>
      */
     pub fn longest_consecutive(nums: Vec<i32>) -> i32 {
@@ -32,7 +32,7 @@ impl Solution {
         return res;
     }
 
-    /**
+    /*
      * 排序 + 遍历
      * 时间复杂度：O(nlogn)(不符合题意)
      */
@@ -56,14 +56,4 @@ impl Solution {
         }
         return result;
     }
-}
-
-#[test]
-fn run() {
-    assert_eq!(Solution::longest_consecutive(vec![0]), 1);
-    assert_eq!(
-        Solution::longest_consecutive(vec![9, 1, 4, 7, 3, -1, 0, 5, 8, -1, 6]),
-        7
-    );
-    assert_eq!(Solution::longest_consecutive(vec![100, 4, 200, 1, 3, 2]), 4);
 }

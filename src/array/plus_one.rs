@@ -24,7 +24,7 @@
 
 struct Solution;
 impl Solution {
-    /**
+    /*
      * 反向遍历数组，当数值小于9时候直接+1返回，若数值等于9则将当前位置改为0继续遍历
      * 当遍历完数组时，如果数组位置1的元素为0则代表所有都进位，则在首部添加1
      */
@@ -44,13 +44,4 @@ impl Solution {
         }
         return digits;
     }
-}
-
-#[test]
-fn run() {
-    assert_eq!(Solution::plus_one(vec![2, 4, 9, 3, 9]), vec![2, 4, 9, 4, 0]);
-    assert_eq!(Solution::plus_one(vec![9, 9]), vec![1, 0, 0]);
-    assert_eq!(Solution::plus_one(vec![1, 2, 3]), vec![1, 2, 4]);
-    assert_eq!(Solution::plus_one(vec![9]), vec![1, 0]);
-    assert_eq!(Solution::plus_one(vec![0]), vec![1]);
 }

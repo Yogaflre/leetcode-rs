@@ -17,7 +17,7 @@
 
 struct Solution;
 impl Solution {
-    /**
+    /*
      * 二分查找
      * 时间复杂度：O(logn)
      * 利用奇偶位置的特性，如果没有单个值，那么重复元素的第一个元素一定是偶数位
@@ -42,7 +42,7 @@ impl Solution {
         return nums[l as usize];
     }
 
-    /**
+    /*
      * 异或运算，因为数组中两两出现，只有单个元素存在
      * 时间复杂度：O(n)
      */
@@ -53,17 +53,4 @@ impl Solution {
         }
         return res;
     }
-}
-
-#[test]
-fn run() {
-    assert_eq!(Solution::single_non_duplicate(vec![1, 1, 2, 2, 3]), 3);
-    assert_eq!(
-        Solution::single_non_duplicate(vec![1, 1, 2, 3, 3, 4, 4, 8, 8]),
-        2
-    );
-    assert_eq!(
-        Solution::single_non_duplicate(vec![3, 3, 7, 7, 10, 11, 11]),
-        10
-    );
 }

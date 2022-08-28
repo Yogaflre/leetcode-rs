@@ -13,7 +13,7 @@
 use std::collections::HashMap;
 struct Solution;
 impl Solution {
-    /**
+    /*
      * prefix sum array
      * nums:      1 1 1
      * array:   0 1 2 3
@@ -34,7 +34,7 @@ impl Solution {
         return count;
     }
 
-    /**
+    /*
      * prefix sum(前缀求和)
      * NOTE 使用prefix sum来替代求和计算，降低O(n)的时间复杂度
      */
@@ -52,7 +52,7 @@ impl Solution {
         return count;
     }
 
-    /**
+    /*
      * 暴力解
      */
     pub fn subarray_sum3(nums: Vec<i32>, k: i32) -> i32 {

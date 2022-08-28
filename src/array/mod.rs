@@ -9,6 +9,7 @@ mod max_consecutive_ones;
 mod maximum_length_of_repeated_subarray;
 mod median_of_two_sorted_arrays;
 mod minimum_size_subarray_sum;
+mod plus_one;
 mod reshape_the_matrix;
 mod search_a_2d_matrix_ii;
 mod set_mismatch;

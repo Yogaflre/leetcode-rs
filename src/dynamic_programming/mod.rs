@@ -7,3 +7,4 @@ mod house_robber;
 mod house_robber_ii;
 mod minimum_path_sum;
 mod zero_one_knapsack;
+mod zero_one_matrix;

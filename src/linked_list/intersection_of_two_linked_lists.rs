@@ -28,12 +28,26 @@ struct Solution;
 impl Solution {
     /*
      * 构造环形链表
-     * TODO 将两个链表尾部分别和另一个链表头部相连，两个链表就变成了相交的循环链表
+     * 将两个链表尾部分别和另一个链表头部相连，两个链表就变成了相交的循环链表
      */
     pub fn get_intersection_node(
-        mut head_a: Option<Box<ListNode>>,
-        mut head_b: Option<Box<ListNode>>,
+        head_a: Option<Box<ListNode>>,
+        head_b: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
+        unsafe {
+            let mut a = &head_a as *const Option<Box<ListNode>>;
+            let mut b = &head_b as *const Option<Box<ListNode>>;
+            while *a != *b {
+                a = match &*a {
+                    Some(node) => &node.next,
+                    None => b,
+                };
+                b = match &*b {
+                    Some(node) => &node.next,
+                    None => a,
+                };
+            }
+        }
         return None;
     }
 }

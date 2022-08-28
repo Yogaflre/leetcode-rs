@@ -15,7 +15,7 @@
 use crate::base::list_node::ListNode;
 struct Solution;
 impl Solution {
-    /**
+    /*
      * 快慢指针 + 反转链表
      * 通过快慢指针找到中点(注意判断慢指针的奇偶数) -> 反转慢指针之后的链表 -> 对比原链表和翻转后的新链表
      */
@@ -50,24 +50,4 @@ impl Solution {
         }
         return new_head;
     }
-}
-
-#[test]
-fn run() {
-    assert_eq!(
-        Solution::is_palindrome(ListNode::create(vec![1, 2, 1])),
-        true
-    );
-    assert_eq!(
-        Solution::is_palindrome(ListNode::create(vec![1, 1, 2, 1])),
-        false
-    );
-    assert_eq!(
-        Solution::is_palindrome(ListNode::create(vec![1, 2, 2, 1])),
-        true
-    );
-    assert_eq!(
-        Solution::is_palindrome(ListNode::create(vec![1, 2, 3, 2, 1])),
-        true
-    );
 }

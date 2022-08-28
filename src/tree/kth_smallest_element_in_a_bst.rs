@@ -33,7 +33,7 @@ use std::cell::RefCell;
 use std::rc::Rc;
 struct Solution;
 impl Solution {
-    /**
+    /*
      * 二叉搜索树特性：中序遍历为递增有序数组
      * 先递归终须遍历得到有序数组，取第k-1个值
      * 空间复杂度O(n)
@@ -52,28 +52,26 @@ impl Solution {
         }
     }
 
-    /**
+    /*
      * 计数
      * 空间复杂度O(1)
      */
-    pub fn kth_smallest2(root: Option<Rc<RefCell<TreeNode>>>, k: i32) -> i32 {
+    pub fn kth_smallest2(root: Option<Rc<RefCell<TreeNode>>>, mut k: i32) -> i32 {
         let mut res = 0;
-        Self::recursive2(root, k, &mut res);
+        Self::recursive2(root, &mut k, &mut res);
         return res;
     }
 
-    fn recursive2(root: Option<Rc<RefCell<TreeNode>>>, k: i32, res: &mut i32) -> i32 {
-        if let Some(node) = root {
-            // NOTE 递归左子树，计算当前节点树（二叉搜索树左子树最小）
-            let l = 1 + Self::recursive2(node.borrow_mut().left.take(), k, res);
-            if l == k {
-                // NOTE 当左子树存在k时，将res赋值为当前节点的值
-                *res = node.borrow().val;
-            }
-            // NOTE 如果左子树不存在则递归右子树查找（注意k的值在右子树也会发生变化）
-            return l + Self::recursive2(node.borrow_mut().right.take(), k - l, res);
-        } else {
-            return 0;
+    fn recursive2(root: Option<Rc<RefCell<TreeNode>>>, k: &mut i32, res: &mut i32) {
+        if root.is_none() || *k == 0 {
+            return;
         }
+        let node = root.unwrap();
+        Self::recursive2(node.borrow_mut().left.take(), k, res);
+        *k -= 1;
+        if *k == 0 {
+            *res = node.borrow().val;
+        }
+        Self::recursive2(node.borrow_mut().right.take(), k, res);
     }
 }

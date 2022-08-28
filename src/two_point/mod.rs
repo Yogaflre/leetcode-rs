@@ -1,8 +1,10 @@
 mod is_subsequence;
 mod linked_list_cycle;
+mod longest_substring_without_repeating_characters;
 mod longest_word_in_dictionary_through_deleting;
 mod merge_sorted_array;
 mod move_zeroes;
+mod next_permutation;
 mod partition_labels;
 mod reverse_vowels_of_a_string;
 mod sum_of_square_numbers;

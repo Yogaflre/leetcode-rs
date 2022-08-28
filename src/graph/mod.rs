@@ -1,6 +1,8 @@
 mod all_ancestors_of_a_node_in_a_directed_acyclic_graph;
+mod all_paths_from_source_to_target;
 mod course_schedule;
 mod course_schedule_ii;
 mod find_eventual_safe_states;
 mod is_graph_bipartite;
+mod number_of_provinces;
 mod sequence_reconstruction;
