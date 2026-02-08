@@ -5,6 +5,5 @@ mod longest_common_prefix;
 mod majority_element;
 mod partition_array_into_three_parts_with_equal_sum;
 mod remove_duplicates_from_sorted_array;
-mod reverse_integer;
 mod roman_to_integer;
 mod shortest_unsorted_continuous_subarray;

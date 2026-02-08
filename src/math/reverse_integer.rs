@@ -1,4 +1,5 @@
-// <翻转整型>
+// <整数反转>
+
 // Given a 32-bit signed integer, reverse digits of an integer.
 
 // Example 1:
@@ -20,55 +21,19 @@
 struct Solution;
 impl Solution {
     /*
-     * 取余 + 位溢出
+     * math
      */
     pub fn reverse(mut x: i32) -> i32 {
-        let check_multi = |tmp| -> bool {
-            if tmp > 0 {
-                return i32::MAX / 10 >= tmp;
-            } else {
-                return i32::MIN / 10 <= tmp;
-            }
-        };
-        let check_add = |tmp: i32, add: i32| {
-            if tmp > 0 {
-                return i32::MAX - tmp >= add;
-            } else {
-                return i32::MIN - tmp <= add;
-            }
-        };
-
-        let mut res = 0;
+        let mut y = 0;
         while x != 0 {
-            if check_multi(res) {
-                res *= 10;
-            } else {
+            if y < i32::MIN / 10 || y > i32::MAX / 10 {
                 return 0;
             }
-            let add = x % 10;
-            if check_add(res, add) {
-                res += add;
-                x /= 10;
-            } else {
-                return 0;
-            }
+            let digit = x % 10;
+            y = y * 10 + digit;
+            x /= 10;
         }
-        return res;
-    }
-    fn check_overflow(tmp: i32, res: i32, add: i32) -> bool {
-        if tmp > 0 {
-            if i32::MAX / 10 > tmp / 10 {
-                return (tmp / 10 - add) == res;
-            } else {
-                return false;
-            }
-        } else {
-            if i32::MIN / 10 < tmp / 10 {
-                return (tmp / 10 - add) == res;
-            } else {
-                return false;
-            }
-        }
+        return y;
     }
 
     /*
@@ -98,4 +63,6 @@ pub fn run() {
     assert_eq!(Solution::reverse(-123), -321);
     assert_eq!(Solution::reverse(120), 21);
     assert_eq!(Solution::reverse(-2147483648), 0);
+    assert_eq!(Solution::reverse(1534236469), 0);
+    assert_eq!(Solution::reverse(1563847412), 0);
 }
